@@ -13,7 +13,7 @@ public class JeuxOlympiques {
     }
 
     public void ajouterAthlete(String nom, String prenom, String sexe, Sport sport, int force, int agilite, int endurance, Pays pays) {
-        new Athlete(nom, prenom, sexe, sport, force, agilite, endurance, pays);
+        new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, sport);
     }
 
     public void ajouterEpreuve(String nomEpreuve, String genre, String competition) {
