@@ -63,7 +63,17 @@ public class Athlete implements Participant {
         mesResultats.add(new Resultat(score, place, epreuve));
     }
 
-    public int getScore(Epreuve epreuve){
+    @Override
+    public int getScoreTotal(){
+        int score = 0;
+        for (Resultat res : this.mesResultats){
+            score += res.getScore();
+        }
+        return score;
+    }
+    
+    @Override
+    public int participer(Epreuve epreuve){
         int score = 0;
         for (Resultat res : this.mesResultats){
             if (res.getEpreuve() == epreuve){
@@ -71,11 +81,6 @@ public class Athlete implements Participant {
             }
         } 
         return score;
-    }
-
-    @Override
-    public int participer(Epreuve compet) {
-        return this.mesResultats.size();
     }
 
     @Override

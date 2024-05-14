@@ -25,5 +25,21 @@ public class Epreuve {
         return lesResultats;
     }
 
+    public void setNomEpreuve(String nomEpreuve) {
+        this.nomEpreuve = nomEpreuve;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setCompetition(String competition) {
+        this.competition = competition;
+    }
+
+    public void setLesResultats(List<Resultat> lesResultats) {
+        this.lesResultats = lesResultats;
+    }
+
 
 }

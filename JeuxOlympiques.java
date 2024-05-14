@@ -13,19 +13,21 @@ public class JeuxOlympiques {
     }
 
     public void ajouterAthlete(String nom, String prenom, String sexe, Sport sport, int force, int agilite, int endurance, Pays pays) {
-        new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, sport);
+        Athlete unAthlete = new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, sport);
+        this.lesAthletes.add(unAthlete);
+        pays.ajouterAthlete(unAthlete);
     }
 
     public void ajouterEpreuve(String nomEpreuve, String genre, String competition) {
         new Epreuve(nomEpreuve, genre, competition);
     }
-
+/* 
     public boolean lancerEpreuve() {
         return true;
     }
-
+*/
     public void enregistrerResultat() {
-
+        //* JDBC ??? */
     }
 
     public List<Epreuve> consulterEpreuve() {
@@ -41,6 +43,6 @@ public class JeuxOlympiques {
     }
 
     public int participer(Participant concurrent) {
-        return 0;
+        return concurrent.getScoreTotal();
     }
 }
