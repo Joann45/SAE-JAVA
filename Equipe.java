@@ -17,6 +17,7 @@ public abstract class Equipe implements Participant{
 
     public abstract boolean ajouteMembres(Athlete sportif);
 
+    @Override
     public int getScoreTotal(){
         int score = 0;
         for (Athlete unAthlete: lesAthletes){
