@@ -16,4 +16,12 @@ public abstract class Equipe implements Participant{
     public abstract List<Athlete> getMembres();
 
     public abstract boolean ajouteMembres(Athlete sportif);
+
+    public int getScoreTotal(){
+        int score = 0;
+        for (Athlete unAthlete: lesAthletes){
+            score+=unAthlete.getScoreTotal();
+        }
+        return score;
+    }
 }

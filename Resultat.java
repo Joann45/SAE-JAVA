@@ -18,4 +18,16 @@ public class Resultat {
     public Epreuve getEpreuve() {
         return epreuve;
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setPlace(int place) {
+        this.place = place;
+    }
+
+    public void setEpreuve(Epreuve epreuve) {
+        this.epreuve = epreuve;
+    }
 }
