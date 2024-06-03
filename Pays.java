@@ -1,3 +1,5 @@
+// Naima
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Pays {
         return nomPays;
     }
 
+    // Pas trop utile = je pense pas qu'un pays change de nom ... (T - 18.05)
     public void setNomPays(String nomPays) {
         this.nomPays = nomPays;
     }
@@ -26,9 +29,11 @@ public class Pays {
         this.lesAthletes = lesAthletes;
     }
 
-    public String getPays() {
-        return nomPays;
-    }
+    // inutile ... getNomPays() au-dessus (T - 18.05)
+    //
+    //public String getPays() {
+    //    return nomPays;
+    //}
 
     public void ajouterAthlete(Athlete athlete){
         this.lesAthletes.add(athlete);

@@ -1,18 +1,22 @@
+// Naima
+
 import java.util.List;
 import java.util.*;
 
 public class Athlete implements Participant {
     private String nom;
     private String prenom;
-    private String sexe;
+    private char sexe; // transformer en char
     private int force;
     private int agilite;
     private int endurance;
     private List<Resultat> mesResultats;
     private Pays pays;
     private Sport sport;
+
+    // l'association d'Athlète à équipe ?
     
-    public Athlete(String nom, String prenom, String sexe, int force, int agilite, int endurance, Pays pays, Sport sport) {
+    public Athlete(String nom, String prenom, char sexe, int force, int agilite, int endurance, Pays pays, Sport sport) {
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
@@ -20,7 +24,7 @@ public class Athlete implements Participant {
         this.force = force;
         this.agilite = agilite;
         this.endurance = endurance;
-        this.sport = sport;
+        this.pays = pays;
     }
 
     public String getNom() {
@@ -31,7 +35,7 @@ public class Athlete implements Participant {
         return prenom;
     }
 
-    public String getSexe() {
+    public char getSexe() {
         return sexe;
     }
 
@@ -63,6 +67,7 @@ public class Athlete implements Participant {
         mesResultats.add(new Resultat(score, place, epreuve));
     }
 
+
     @Override
     public int getScoreTotal(){
         int score = 0;
@@ -71,7 +76,7 @@ public class Athlete implements Participant {
         }
         return score;
     }
-    
+
     @Override
     public int participer(Epreuve epreuve){
         int score = 0;
@@ -83,9 +88,10 @@ public class Athlete implements Participant {
         return score;
     }
 
+    // rajout d'un espace entre nom et prénom (Thomas - 18.05)
     @Override
     public String obtenirNom() {
-        return this.nom + this.prenom;
+        return this.nom + " " + this.prenom;
     }
 
 }
