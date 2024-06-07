@@ -99,5 +99,4 @@ public abstract class Equipe implements Participant, Comparable<Equipe> {
     public int compareTo(Equipe uneEquipe){
         return Integer.compare(this.scoreTot(), uneEquipe.scoreTot())*-1;
     }
-    
 }

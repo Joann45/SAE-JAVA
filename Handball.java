@@ -1,6 +1,7 @@
 /**
 *@author Thomas
 */
+import java.util.List;
 
 public class Handball extends Equipe {
 

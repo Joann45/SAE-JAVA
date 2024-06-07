@@ -1,6 +1,7 @@
 /**
 *@author Thomas
 */
+import java.util.List;
 
 public class Relais extends Equipe {
     private Epreuve epreuve;
@@ -9,7 +10,7 @@ public class Relais extends Equipe {
         super(nomEquipe);
         this.epreuve = epreuve;
     }
-
+  
     public Epreuve getRelaisEpreuve() {
         return this.epreuve;
     }
