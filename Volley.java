@@ -1,3 +1,6 @@
+/**
+*@author Thomas
+*/
 import java.util.List;
 
 public class Volley extends Equipe {
@@ -7,23 +10,21 @@ public class Volley extends Equipe {
     }
 
     @Override
-    public List<Athlete> getMembres() {
-        return this.lesAthletes;
-    }
-
-    @Override
+    /** Ajoute un membre à l'équipe de Volley (limite 6 joueurs)
+     * @param sportif un athlete
+     * @return true si l'athlete a été rajouté à l'équipe
+     */
     public boolean ajouteMembres(Athlete sportif) {
-        this.lesAthletes.add(sportif);
-        return true;
+        if (this.lesMembres.size()<6) {
+            return this.lesMembres.add(sportif);
+        }
+        return false;
     }
 
     @Override
-    public int participer(Epreuve compet) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'participer'");
-    }
-
-    @Override
+    /** Retourne le nom de l'équipe
+     * @return string le nom de l'équipe
+     */
     public String obtenirNom() {
         return this.getNomEquipe();
     }
