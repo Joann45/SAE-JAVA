@@ -1,4 +1,6 @@
-import java.util.List;
+/**
+*@author Thomas
+*/
 
 public class Handball extends Equipe {
 
@@ -7,20 +9,15 @@ public class Handball extends Equipe {
     }
 
     @Override
-    public List<Athlete> getMembres() {
-        return this.lesAthletes;
-    }
-
-    @Override
+    /** Ajoute un membre à l'équipe de Handball (limite 7 joueurs)
+     * @param sportif un athlete
+     * @return true si l'athlete a été rajouté à l'équipe
+     */
     public boolean ajouteMembres(Athlete sportif) {
-        this.lesAthletes.add(sportif);
-        return true;
-    }
-
-    @Override
-    public int participer(Epreuve compet) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'participer'");
+        if (this.lesMembres.size()<7) {
+            return this.lesMembres.add(sportif);
+        }
+        return false;
     }
 
     @Override
