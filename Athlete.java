@@ -229,6 +229,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
     @Override
     public int compareTo(Athlete unAthlete){
         return Integer.compare(scoreTot(), unAthlete.scoreTot())*-1;
+    }
 
 // ---------------------------------------------------------------------------------------------------------- //
 }

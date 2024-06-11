@@ -86,17 +86,18 @@ public abstract class Equipe implements Participant, Comparable<Equipe> {
         } 
         return score;
     }
-
-    public int scoreTot(){
+    
+    @Override
+    public int getScoreTotal(){
         int score = 0;
         for (Athlete unAthlete:this.lesMembres){
-            score += unAthlete.scoreTot();
+            score += unAthlete.getScoreTotal();
         }
         return score;
     }
 
     @Override
     public int compareTo(Equipe uneEquipe){
-        return Integer.compare(this.scoreTot(), uneEquipe.scoreTot())*-1;
+        return Integer.compare(this.getScoreTotal(), uneEquipe.getScoreTotal())*-1;
     }
 }

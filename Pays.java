@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Pays {
     private final String nomPays;
-    private String nomPays;
     private List<Athlete> lesAthletes;
 
     public Pays(String nomPays) {
@@ -63,21 +62,6 @@ public class Pays {
      */
     public int compareTo(Pays unPays){
         return Integer.compare(this.scoreTot(), unPays.scoreTot())*-1;
-
-    public String getNomPays() {
-        return nomPays;
-    }
-
-    public void setNomPays(String nomPays) {
-        this.nomPays = nomPays;
-    }
-
-    public List<Athlete> getLesAthletes() {
-        return lesAthletes;
-    }
-
-    public void setLesAthletes(List<Athlete> lesAthletes) {
-        this.lesAthletes = lesAthletes;
     }
 
     /**
@@ -86,9 +70,5 @@ public class Pays {
     @Override
     public String toString() {
         return "Le pays : " + nomPays + ", possède les Athletes : " + lesAthletes;
-    }
-
-    public void ajouterAthlete(Athlete athlete){
-        this.lesAthletes.add(athlete);
     }
 }
