@@ -230,9 +230,5 @@ public class Athlete implements Participant, Comparable<Athlete> {
     public int compareTo(Athlete unAthlete){
         return Integer.compare(scoreTot(), unAthlete.scoreTot())*-1;
 
-    public String obtenirNom() {
-        return this.nom + this.prenom;
-    }
-
 // ---------------------------------------------------------------------------------------------------------- //
 }
