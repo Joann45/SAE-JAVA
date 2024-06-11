@@ -1,34 +1,32 @@
+package src;
 /**
 *@author Thomas
 */
 import java.util.List;
 
-public class Relais extends Equipe {
-    private Epreuve epreuve;
+public class Volley extends Equipe {
 
-    public Relais(String nomEquipe, Epreuve epreuve) {
+    public Volley(String nomEquipe) {
         super(nomEquipe);
-        this.epreuve = epreuve;
-    }
-  
-    public Epreuve getRelaisEpreuve() {
-        return this.epreuve;
     }
 
     @Override
-    /** Ajoute un membre à l'équipe de Relais (limite 4 joueurs)
+    /** Ajoute un membre à l'équipe de Volley (limite 6 joueurs)
      * @param sportif un athlete
      * @return true si l'athlete a été rajouté à l'équipe
      */
     public boolean ajouteMembres(Athlete sportif) {
-        if (this.lesMembres.size()<4) {
+        if (this.lesMembres.size()<6) {
             return this.lesMembres.add(sportif);
         }
         return false;
     }
 
     @Override
+    /** Retourne le nom de l'équipe
+     * @return string le nom de l'équipe
+     */
     public String obtenirNom() {
         return this.getNomEquipe();
-    }    
+    }
 }
