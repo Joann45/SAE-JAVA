@@ -161,6 +161,17 @@ public class Athlete implements Participant, Comparable<Athlete> {
      * @param epreuve
      * renvoie le score d'un athlète pour une épreuve
      */
+
+    @Override
+    public int getScoreTotal(){
+        int score = 0;
+        for (Resultat res : this.mesResultats){
+            score += res.getScore();
+        }
+        return score;
+    }
+
+  
     @Override
     public int participer(Epreuve epreuve){
         int score = 0;
@@ -218,6 +229,9 @@ public class Athlete implements Participant, Comparable<Athlete> {
     @Override
     public int compareTo(Athlete unAthlete){
         return Integer.compare(scoreTot(), unAthlete.scoreTot())*-1;
+
+    public String obtenirNom() {
+        return this.nom + this.prenom;
     }
 
 // ---------------------------------------------------------------------------------------------------------- //

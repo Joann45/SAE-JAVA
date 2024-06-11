@@ -1,3 +1,6 @@
+/**
+*@author Thomas
+*/
 import java.util.List;
 
 public class Relais extends Equipe {
@@ -7,22 +10,21 @@ public class Relais extends Equipe {
         super(nomEquipe);
         this.epreuve = epreuve;
     }
-
-    @Override
-    public List<Athlete> getMembres() {
-        return this.lesAthletes;
+  
+    public Epreuve getRelaisEpreuve() {
+        return this.epreuve;
     }
 
     @Override
+    /** Ajoute un membre à l'équipe de Relais (limite 4 joueurs)
+     * @param sportif un athlete
+     * @return true si l'athlete a été rajouté à l'équipe
+     */
     public boolean ajouteMembres(Athlete sportif) {
-        this.lesAthletes.add(sportif);
-        return true;
-    }
-
-    @Override
-    public int participer(Epreuve compet) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'participer'");
+        if (this.lesMembres.size()<4) {
+            return this.lesMembres.add(sportif);
+        }
+        return false;
     }
 
     @Override
