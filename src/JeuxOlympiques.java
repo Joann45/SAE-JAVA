@@ -4,6 +4,10 @@ package src;
 */
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +32,21 @@ public class JeuxOlympiques {
         if (!this.lesPays.contains(pays)){ // plus nécessaire car lesPays devient un ensemble
             this.lesPays.add(pays);
         }
+    }
+
+    public void ajouterAthleteCsv(String fileName) {
+        String line = "";
+        String cvsSplitBy = ",";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            while ((line = br.readLine()) != null) {
+                String[] columns = line.split(cvsSplitBy);
+                System.out.println("Nom : " + columns[0] + " , Prénom : " + columns[1] + " , Sexe : " + columns[2] + " , Force : " + columns[3] + " , Agilite : " + columns[4] + " , Endurance : " + columns[5] + " , Pays : " + columns[6] + " , Sport : " + columns[7]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     }
 
     public void ajouterEpreuve(Sport sport, String nomEpreuve, char genre, String competition) {
