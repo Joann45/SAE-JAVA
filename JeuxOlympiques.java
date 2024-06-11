@@ -1,40 +1,76 @@
+/**
+*@author Joann
+*/
+
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class JeuxOlympiques {
-    private List<Epreuve> lesEpreuves;
-    private List<Pays> lesPays;
+    private Set<Epreuve> lesEpreuves;
+    private Set<Pays> lesPays;
     private List<Athlete> lesAthletes;
 
+    // Transformation de lesEpreuves et lesPays en ensemble
     public JeuxOlympiques() {
-        this.lesEpreuves = new ArrayList<>();
-        this.lesPays = new ArrayList<>();
+        this.lesEpreuves = new HashSet<>();
+        this.lesPays = new HashSet<>();
         this.lesAthletes = new ArrayList<>();
     }
 
-    public void ajouterAthlete(String nom, String prenom, String sexe, Sport sport, int force, int agilite, int endurance, Pays pays) {
+    public void ajouterAthlete(String nom, String prenom, char sexe, Sport sport, int force, int agilite, int endurance, Pays pays) {
         Athlete unAthlete = new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, sport);
         this.lesAthletes.add(unAthlete);
         pays.ajouterAthlete(unAthlete);
+        if (!this.lesPays.contains(pays)){ // plus nécessaire car lesPays devient un ensemble
+            this.lesPays.add(pays);
+        }
     }
 
-    public void ajouterEpreuve(String nomEpreuve, String genre, String competition) {
-        new Epreuve(nomEpreuve, genre, competition);
+    public void ajouterEpreuve(Sport sport, String nomEpreuve, char genre, String competition) {
+        Epreuve uneEpreuve = new Epreuve(sport, nomEpreuve, genre, competition);
+        this.lesEpreuves.add(uneEpreuve);
     }
+
+    public void ajouterEpreuve(Epreuve epreuve) {
+        this.lesEpreuves.add(epreuve);
+    }
+
+    public void ajouterAthlete(Athlete athlete) {
+        this.lesAthletes.add(athlete);
+        athlete.getPays().ajouterAthlete(athlete);
+        if (!this.lesPays.contains(athlete.getPays())){ // plus nécessaire car lesPays devient un ensemble
+            this.lesPays.add(athlete.getPays());
+        }
+    }
+
+
 /* 
     public boolean lancerEpreuve() {
         return true;
     }
 */
-    public void enregistrerResultat() {
+
+    // Oui on verra lors de la semaine SAE (Thomas - 18.05)
+    public void enregistrerResultat(Participant participant, Epreuve epreuve, int score) {
         //* JDBC ??? */
+        if (participant instanceof Athlete sportif) {
+            sportif.ajouteResultat(score, epreuve);
+        }
+        else {
+            Equipe equipe = (Equipe) participant;
+            equipe.ajouteResultat(score, epreuve);
+        }
+        
     }
 
-    public List<Epreuve> consulterEpreuve() {
+    public Set<Epreuve> consulterEpreuve() {
         return this.lesEpreuves;
     }
 
-    public List<Pays> consulterPays() {
+    public Set<Pays> consulterPays() {
         return this.lesPays;
     }
 
@@ -42,7 +78,13 @@ public class JeuxOlympiques {
         return this.lesAthletes;
     }
 
-    public int participer(Participant concurrent) {
-        return concurrent.getScoreTotal();
+    public int participer(Participant participant, Epreuve epreuve) {
+        if (participant instanceof Athlete sportif) {
+            return sportif.participer(epreuve);
+        }
+        else {
+            Equipe equipe = (Equipe) participant;
+            return equipe.participer(epreuve);
+        }
     }
 }
