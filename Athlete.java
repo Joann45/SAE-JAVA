@@ -199,7 +199,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
     public void ajouteResultat(int score, Epreuve epreuve) {
         int res = score + this.endurance + this.agilite * this.force;
         Resultat resultat = new Resultat(res, epreuve);
-        mesResultats.add(resultat);
+        this.mesResultats.add(resultat);
         epreuve.ajouterResultat(resultat);
     }
 
