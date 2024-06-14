@@ -6,6 +6,7 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Classe Athlete implémentant l'interface Participant et Comparable d'Athlète */
 public class Athlete implements Participant, Comparable<Athlete> {
 
     private final String nom;
@@ -23,14 +24,15 @@ public class Athlete implements Participant, Comparable<Athlete> {
     private List<Resultat> mesResultats;
     
     /**
-     * @param nom
-     * @param prenom
-     * @param sexe
-     * @param force
-     * @param agilite
-     * @param endurance
-     * @param pays
-     * @param sport
+     * constructeur de Athlete
+     * @param nom le nom de l'athlète
+     * @param prenom le prénom de l'athlète
+     * @param sexe le sexe de l'athlète
+     * @param force la force de l'athlète
+     * @param agilite l'agilité de l'athlète
+     * @param endurance l'endurance de l'athlète
+     * @param pays le pays de l'athlète
+     * @param sport le sport de l'athlète
      */
     public Athlete(String nom, String prenom, char sexe, int force, int agilite, int endurance, Pays pays, Sport sport) {
         this.nom = nom;
@@ -159,7 +161,6 @@ public class Athlete implements Participant, Comparable<Athlete> {
     }
 
     /**
-     * @param epreuve
      * renvoie le score d'un athlète pour une épreuve
      */
 
@@ -205,6 +206,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
     }
 
     /**
+     * calcule le score total de l'athlète
      * @return le score total
      */
     public int scoreTot(){
@@ -223,8 +225,9 @@ public class Athlete implements Participant, Comparable<Athlete> {
         return this.obtenirNom();
     }
 
-    /**
-     * @param unAthlete
+     /**
+     * indique quel athlète a le score le plus grand
+     * @param unAthlete un athlète
      * @return 1 si le score de l'athlète est plus grand que le score de unAthlete, 0 si ils sont égaux, -1 si non 
      */
     @Override

@@ -2,10 +2,14 @@ package src;
 /**
 *@author Thomas
 */
-import java.util.List;
 
+/** Classe Volley qui étend la classe abstraite Equipe */
 public class Volley extends Equipe {
 
+    /**
+     * Constructeur de Volley
+     * @param nomEquipe nom de l'équipe
+     */
     public Volley(String nomEquipe) {
         super(nomEquipe);
     }

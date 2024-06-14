@@ -6,10 +6,12 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Classe abstraite Equipe implémentant l'interface Participant */
 public abstract class Equipe implements Participant, Comparable<Equipe> {
     
     private final String nomEquipe;
     
+    /** liste des membres de l'équipe (protected) pour que les classes qui étendent cette classe puisse l'utilisé */
     protected List<Athlete> lesMembres;
 
     private List<Resultat> lesResultats;

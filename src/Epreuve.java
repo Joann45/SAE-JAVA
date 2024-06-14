@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/** Classe Epreuve */
 public class Epreuve {
 
     private final Sport sport;
@@ -16,6 +17,13 @@ public class Epreuve {
 
     private List<Resultat> lesResultats;
 
+    
+    /** Constructeur d'Epreuve
+     * @param sport un sport
+     * @param nomEpreuve le nom d'une epreuve
+     * @param genre le genre de l'epreuve M pour masculin et F pour féminin
+     * @param competition indique si la competition est individuel et en equipe
+     */
     public Epreuve(Sport sport, String nomEpreuve, char genre, String competition) {
         this.sport = sport;
         this.nomEpreuve = nomEpreuve;
@@ -24,33 +32,58 @@ public class Epreuve {
         this.lesResultats = new ArrayList<>();
     }
 
+    /**
+     * Retourne le sport concerné par l'épreuve
+     * @return le sport
+     */
     public Sport getSport() {
         return this.sport;
     }
 
+    /**
+     * Retourne le nom de l'épreuve
+     * @return une chaine de caractères
+     */
     public String getNomEpreuve() {
         return this.nomEpreuve;
     }
 
+    /**
+     * Retourne le genre de l'épreuve
+     * @return un caractère : M ou F
+     */
     public char getGenreEpreuve() {
         return this.genre;
     }
 
+    /**
+     * Retourne le type de competition
+     * @return une chaine de caractères
+     */
     public String getCompetition() {
         return this.competition;
     }
 
-    // Rajouter (01/06/2024)
+    /**
+     * Permet d'ajouter un résultat à l'épreuve
+     * @param resultat le résultat à rajouter
+     */
     public void ajouterResultat(Resultat resultat) {
         this.lesResultats.add(resultat);
     }
 
-    // Rajouter (01/06/2024)
+    /**
+     * Retourne les résultats à l'épreuve
+     * @return la liste des résultats à l'épreuve
+     */
     public List<Resultat> getResultats() {
         return this.lesResultats;
     }
 
-    // Rajouter (01/06/2024)
+    /**
+     * Renvoi une liste des epreuves trier en fonction des résultats à l'épreuve 
+     * @return liste de résultats trier
+     */
     public List<Resultat> ClassementEpreuve() {
         ComparateurResultat comp = new ComparateurResultat();
         Collections.sort(this.lesResultats, comp);
@@ -66,15 +99,19 @@ public class Epreuve {
         Epreuve tmp = (Epreuve) obj;
         return this.sport.equals(tmp.sport) && this.nomEpreuve.equals(tmp.nomEpreuve) && this.genre == tmp.genre && this.competition.equals(tmp.competition) && this.lesResultats.equals(tmp.lesResultats);
     }
-    
-// ---------------------------------------------------------------------------------------------------------- //
-
-    
-
+        
+    /**
+     * Permet de modifier le genre de la competition
+     * @param genre M ou F
+     */
     public void setGenre(char genre) {
         this.genre = genre;
     }
 
+    /**
+     * Permet de modifier le type de competition
+     * @param competition individuel ou par équipe
+     */
     public void setCompetition(String competition) {
         this.competition = competition;
     }

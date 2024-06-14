@@ -7,6 +7,10 @@ public class Sport {
 
     private final String nomSport;
 
+    /**
+     * Constructeur de Sport
+     * @param nom le nomm d'un sport
+     */
     public Sport(String nom){
         this.nomSport = nom; 
     }
