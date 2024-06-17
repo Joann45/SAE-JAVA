@@ -28,6 +28,9 @@ public class Equipe implements Participant, Comparable<Equipe>{
         }
         else {this.lesMembres.add(athlete);}
     }
+
+    // public void retirerAthlete(Athlete athlete);
+
     @Override
     public int getNbOr(){
         return this.nbOr;
