@@ -4,6 +4,7 @@ package src;
 */
 import java.util.Comparator;
 
+/** Classe permettant de comparer des Résultats, implémentant Comparator de Résultat */
 public class ComparateurResultat implements Comparator<Resultat> {
 
     @Override

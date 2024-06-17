@@ -1,104 +1,101 @@
-package src;
-/**
-*@author Thomas
-*/
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Equipe implements Participant, Comparable<Equipe> {
+public class Equipe implements Participant, Comparable<Equipe>{
     
     private final String nomEquipe;
+    private double score;
+    private int nbOr = 0;
+    private int nbArgent = 0;
+    private int nbBronze = 0;
+    private List<Athlete> lesMembres;
+    private List<Epreuve> lesEpreuves;
     
-    protected List<Athlete> lesMembres;
-
-    private List<Resultat> lesResultats;
-
-    /** Constructeur d'Equipe
-     * @param nomEquipe : le nom de l'équipe
-     */
-    public Equipe(String nomEquipe) {
+    public Equipe(String nomEquipe){
         this.nomEquipe = nomEquipe;
         this.lesMembres = new ArrayList<>();
-        this.lesResultats = new ArrayList<>();
+        this.lesEpreuves = new ArrayList<>();
     }
 
-    /** Retourne le nom de l'équipe
-     * @return le nom de l'équipe
-     */
-    public String getNomEquipe() {
+    public void ajouteAthlete(Athlete athlete){
+        if (!this.lesMembres.isEmpty()) {
+            Pays paysEquipe = getPaysEquipe();
+            if (athlete.getPaysAthlete().equals(paysEquipe)) {
+                this.lesMembres.add(athlete);
+            }
+            else {System.out.println("L'athlète qui a voulu être ajouté n'est pas du même pays que les autres athlètes de l'équipe !");}
+        }
+        else {this.lesMembres.add(athlete);}
+    }
+    @Override
+    public int getNbOr(){
+        return this.nbOr;
+    }
+    @Override
+    public int getNbArgent(){
+        return this.nbArgent;
+    }
+    @Override
+    public int getNbBronze(){
+        return this.nbBronze;
+    }
+    @Override
+    public double getScore(){
+        return this.score;
+    }
+
+    @Override
+    public void setScore(double score){
+        this.score += score;
+    }
+
+    @Override
+    public void setPlacement(int place){
+        if (place == 1) {this.nbOr++;}
+        if (place == 2) {this.nbArgent++;}
+        if (place == 3) {this.nbBronze++;}
+    }
+
+    public Pays getPaysEquipe() {
+        return this.lesMembres.get(0).getPaysAthlete();
+    }
+
+    public void ajouteEpreuve(Epreuve epreuve){
+        this.lesEpreuves.add(epreuve);
+    }
+
+    @Override
+    public String obtenirNom(){
         return this.nomEquipe;
     }
 
-    /** Retourne les membres de l'équipe
-     * @return la liste des athlètes composant l'équipe
-     */
-    public List<Athlete> getMembres() {
-        return this.lesMembres;
+    @Override
+    public double participer(Epreuve epreuve) {
+        Score unScore = epreuve.getScore(this);
+        return unScore.getScore();
     }
-
-    /** Retourne le pays de l'équipe
-     * @return le pays des membres de l'équipe
-     */
-    public Pays getPays() {
-        return this.lesMembres.get(0).getPays();
-    }
-
-    /** Ajoute un résultat à une épreuve pour l'équipe
-     * @param score le score à l'épreuve
-     * @param epreuve une épreuve
-     */
-    public void ajouteResultat(int score, Epreuve epreuve) {
-        Resultat resultat = new Resultat(score, epreuve); // modifier (01/06/2024)
-        lesResultats.add(resultat);
-        epreuve.ajouterResultat(resultat); // ajouter (01/06/2024)
-    }
-
-    /** Ajoute un membre à l'équipe
-     * @param sportif un athlete
-     * @return true si l'athlete a été rajouté à l'équipe
-     */
-    public abstract boolean ajouteMembres(Athlete sportif);
-
-// ------------------------------------------------------------------------------------ //
 
     @Override
-    /** Retourne le score que l'équipe à remporté pour une epreuve
-     * @param epreuve une epreuve
-     * @return le score de l'équipe à l'épreuve
-     */
-    public int participer(Epreuve epreuve){
-        int score = 0;
-        for (Athlete sportif : this.lesMembres){
-            score += sportif.participer(epreuve);
-        } 
-        return score;
+    public int getPlacement(Epreuve epreuve) {
+        Score unScore = epreuve.getScore(this);
+        return unScore.getPlacement();
     }
 
-    /** Retourne le score que l'équipe à remporté pour une epreuve (Version 2)
-     * @param epreuve une epreuve
-     * @return le score de l'équipe à l'épreuve
-     */
-    public int participer2(Epreuve epreuve){
-        int score = 0;
-        for (Resultat result : this.lesResultats){
-            if(result.getEpreuve().equals(epreuve))
-            score += result.getScore();
-        } 
-        return score;
-    }
-    
     @Override
-    public int getScoreTotal(){
-        int score = 0;
-        for (Athlete unAthlete:this.lesMembres){
-            score += unAthlete.getScoreTotal();
+    public String toString(){
+        String res = "Nom de l'équipe: "+this.nomEquipe + System.lineSeparator();
+        res += "Nationalité de l'équipe: "+this.lesMembres.get(0).getPaysAthlete()+ System.lineSeparator();
+        res += "Liste des athlètes: ";  
+        for (Athlete athlete: this.lesMembres){
+            res += athlete + ", ";
         }
-        return score;
+        res += System.lineSeparator();
+        return res;
     }
 
     @Override
-    public int compareTo(Equipe uneEquipe){
-        return Integer.compare(this.getScoreTotal(), uneEquipe.getScoreTotal())*-1;
+    public int compareTo(Equipe uneEquipe) {
+        return Double.compare(this.score, uneEquipe.score) * -1;
     }
 }

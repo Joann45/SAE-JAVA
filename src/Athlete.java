@@ -1,236 +1,187 @@
-package src;
 /**
-*@author Naima
-*/
-
-import java.util.ArrayList;
-import java.util.List;
-
+ * La classe Athlete représente un pays.
+ * Elle possède un attribut qui est le nom du pays.
+ */
 public class Athlete implements Participant, Comparable<Athlete> {
-
-    private final String nom;
-    private final String prenom;
-    private final char sexe;
-
+    
+    private final String nomAthlete;
+    private final String prenomAthlete;
+    private final char sexeAthlete;
+    
     private int force;
     private int agilite;
     private int endurance;
-    
-    private Pays pays;
-    private Sport sport;
-    private Equipe uneEquipe;
+    private int nbOr = 0;
+    private int nbArgent = 0;
+    private int nbBronze = 0;
 
-    private List<Resultat> mesResultats;
-    
+    private double score;
+
+    private Pays paysAthlete;
+
+    private Equipe equipe;
+
     /**
-     * @param nom
-     * @param prenom
-     * @param sexe
-     * @param force
-     * @param agilite
-     * @param endurance
-     * @param pays
-     * @param sport
+     * Construit une instance de Pays avec le nom spécifié.
+     * @param nomP le nom du pays
      */
-    public Athlete(String nom, String prenom, char sexe, int force, int agilite, int endurance, Pays pays, Sport sport) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.sexe = sexe;
-
+    public Athlete(String nomA, String prenomA, char sexeA, int force, int agilite, int endurance, Pays paysA, Equipe equipe) {
+        this.nomAthlete = nomA;
+        this.prenomAthlete = prenomA;
+        this.sexeAthlete = sexeA;
         this.force = force;
         this.agilite = agilite;
         this.endurance = endurance;
-
-        this.pays = pays;
-        this.sport = sport;
-        this.uneEquipe = null;
-
-        this.mesResultats = new ArrayList<>();
+        this.paysAthlete = paysA;
+        this.equipe = equipe;
+    }
+    @Override
+    public int getNbOr(){
+        return this.nbOr;
+    }
+    @Override
+    public int getNbArgent(){
+        return this.nbArgent;
+    }
+    @Override
+    public int getNbBronze(){
+        return this.nbBronze;
     }
 
     /**
-     * @return le nom de l'athlète
+     * Retourne le nom et prénom de l'athlète.
+     * @return le nom et prénom.
      */
-    public String getNom() {
-        return this.nom;
+    @Override
+    public String obtenirNom() {
+        return this.nomAthlete + " " + this.prenomAthlete;
     }
 
+    @Override
+    public double getScore(){
+        return this.score;
+    }
+
+    @Override
+    public void setScore(double score){
+        this.score += score;
+    }
+
+    @Override
+    public void setPlacement(int place){
+        if (place == 1) {
+            this.nbOr++;
+            equipe.setPlacement(1);
+        }
+        if (place == 2) {
+            this.nbArgent++;
+            equipe.setPlacement(2);
+        }
+        if (place == 3) {
+            this.nbBronze++;
+            equipe.setPlacement(3);
+        }
+    }
+    
     /**
-     * @return le prénom de l'athlète
+     * Retourne le sexe de l'athlète.
+     * @return le genre.
      */
-    public String getPrenom() {
-        return this.prenom;
+    public char getSexeAthlete() {
+        return this.sexeAthlete;
     }
 
     /**
-     * @return le sexe de l'athlète
-     */
-    public char getSexe() {
-        return this.sexe;
-    }
-
-    /**
-     * @return la force de l'athlète
+     * Retourne la force de l'athlète.
+     * @return sa force.
      */
     public int getForce() {
         return this.force;
     }
 
     /**
-     * @return le nom de l'athlète
+     * Modifie la force de l'athlète.
+     */
+    public void setForce(int force) {
+        this.force = force;
+    }
+
+    /**
+     * Retourne l'agilité de l'athlète.
+     * @return son agilité.
      */
     public int getAgilite() {
         return this.agilite;
     }
 
     /**
-     * @return l'endurance de l'athlète
-     */
-    public int getEndurance() {
-        return this.endurance;
-    }
-
-    /**
-     * @param force 
-     * met à jour la force de l'athlète
-     */ 
-    public void setForce(int force) {
-        this.force = force;
-    }
-
-    /**
-     * @param agilite
-     * met à jour l'agilité de l'athlète
+     * Modifie l'agilité de l'athlète.
      */
     public void setAgilite(int agilite) {
         this.agilite = agilite;
     }
 
     /**
-     * @param endurance
-     * met à jour l'endurance de l'athlète
+     * Retourne l'endurance de l'athlète.
+     * @return son endurance.
+     */
+    public int getEndurance() {
+        return this.endurance;
+    }
+
+    /**
+     * Modifie l'endurance de l'athlète.
      */
     public void setEndurance(int endurance) {
         this.endurance = endurance;
     }
 
     /**
-     * @return le pays de l'athlète
+     * Retourne le pays de l'athlète.
+     * @return son pays.
      */
-    public Pays getPays() {
-        return this.pays;
+    public Pays getPaysAthlete() {
+        return this.paysAthlete;
     }
 
     /**
-     * @param pays 
-     * met à jour le pays de l'athlète
-     */ 
-    public void setPays(Pays pays) {
-        this.pays = pays;
+     * Modifie le pays de l'athlète.
+     */
+    public void setPaysAthlete(Pays paysAthlete) {
+        this.paysAthlete = paysAthlete;
     }
 
-    /**
-     * @return le sport de l'athlète
-     */
-    public Sport getSport() {
-        return this.sport;
-    }   
+    public Equipe getEquipe() {return this.equipe;}
 
     /**
-     * @return les résultats de l'athlète
+     * Retourne un affichage indiquant le nombre de médailles de l'athlète
+     * @return une phrase donnant le nb de médailles de l'athlète
      */
-    public List<Resultat> getMesResultats() {
-        return this.mesResultats;
+    public String getMedaillesAthlete() {
+        return this.obtenirNom() + " a : " + System.lineSeparator() + "- " + this.nbOr + " médaille(s) d'or" + System.lineSeparator() + "- " + this.nbArgent + " médaille(s) d'argent" + System.lineSeparator() + "- " + this.nbBronze + " médaille(s) de bronze" ;
     }
-
-    /**
-     * @return l'équipe de l'athlète
-     */
-    public Equipe getEquipe() {
-        return this.uneEquipe;
-    }    
-    
-    /**
-     * @param equipe
-     * met à jour l'équipe de l'athlète
-     */
-    public void inscrireDansEquipe(Equipe equipe) {
-        this.uneEquipe = equipe;
-    }
-
-    /**
-     * @param epreuve
-     * renvoie le score d'un athlète pour une épreuve
-     */
 
     @Override
-    public int getScoreTotal(){
-        int score = 0;
-        for (Resultat res : this.mesResultats){
-            score += res.getScore();
-        }
-        return score;
+    public double participer(Epreuve epreuve) {
+        Score unScore = epreuve.getScore(this);
+        return unScore.getScore();
     }
 
-  
     @Override
-    public int participer(Epreuve epreuve){
-        int score = 0;
-        for (Resultat res : this.mesResultats){
-            if (res.getEpreuve() == epreuve){
-                score += res.getScore();
-            }
-        } 
-        return score;
+    public int getPlacement(Epreuve epreuve) {
+        Score unScore = epreuve.getScore(this);
+        return unScore.getPlacement();
     }
 
-    /**
-     * @return le nom et prénom dun athlète
-     */
-    @Override
-    public String obtenirNom() {
-        return this.nom + " " + this.prenom;
-    }
-
-    /**
-     * @param score le score de l'équipe
-     * @param epreuve l'épreuve
-     * ajoute le score dans les résultats et dans épreuve
-     */
-    public void ajouteResultat(int score, Epreuve epreuve) {
-        int res = score + this.endurance + this.agilite * this.force;
-        Resultat resultat = new Resultat(res, epreuve);
-        mesResultats.add(resultat);
-        epreuve.ajouterResultat(resultat);
-    }
-
-    /**
-     * @return le score total
-     */
-    public int scoreTot(){
-        int score = 0;
-        for (Resultat res: this.mesResultats){
-            score += res.getScore();
-        }
-        return score;
-    }
-
-    /**
-     * @return le nom de l'athlète
-     */
     @Override
     public String toString() {
-        return this.obtenirNom();
+        return obtenirNom();
     }
 
-    /**
-     * @param unAthlete
-     * @return 1 si le score de l'athlète est plus grand que le score de unAthlete, 0 si ils sont égaux, -1 si non 
-     */
     @Override
-    public int compareTo(Athlete unAthlete){
-        return Integer.compare(scoreTot(), unAthlete.scoreTot())*-1;
+    public int compareTo(Athlete unAthlete) {
+        return Double.compare(this.score, unAthlete.score) * -1;
     }
 
-// ---------------------------------------------------------------------------------------------------------- //
+    
 }

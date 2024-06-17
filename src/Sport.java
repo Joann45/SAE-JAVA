@@ -1,28 +1,22 @@
-package src;
-/**
-*@author Naima
-*/
+public abstract class Sport {
+    
+    protected String nomSport;
+    protected int nbMembresEquipe;
 
-public class Sport {
-
-    private final String nomSport;
-
-    public Sport(String nom){
-        this.nomSport = nom; 
+    protected Sport(String nomS) {
+        this.nomSport = nomS;
     }
 
-    /**
-     * @return le nom du sport
-     */
-    public String getNomSport(){
-        return this.nomSport; 
+    public String getNomSport() {
+        return this.nomSport;
     }
 
-    /**
-     * @return le nom du sport
-     */
+    public int getNbMembresEquipe() {
+        return this.nbMembresEquipe;
+    }
+
     @Override
     public String toString() {
         return this.nomSport;
-    }   
+    }
 }

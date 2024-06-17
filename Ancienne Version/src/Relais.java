@@ -2,16 +2,25 @@ package src;
 /**
 *@author Thomas
 */
-import java.util.List;
 
+/** Classe Relais (pour l'athletisme et la natation) qui étend la classe abstraite Equipe */
 public class Relais extends Equipe {
     private Epreuve epreuve;
 
+    /**
+     * Constructeur d'une équipe de natation ou d'athlètisme (relais)
+     * @param nomEquipe nom de l'équipe
+     * @param epreuve le nom de l'épreuve pour distinguer entre natation et athlètisme
+     */
     public Relais(String nomEquipe, Epreuve epreuve) {
         super(nomEquipe);
         this.epreuve = epreuve;
     }
   
+    /**
+     * retourne l'épreuve du relais
+     * @return le type d'épreuve concerné par le relais
+     */
     public Epreuve getRelaisEpreuve() {
         return this.epreuve;
     }

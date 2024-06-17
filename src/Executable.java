@@ -1,69 +1,62 @@
-package src;
-// Thomas
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Executable {
+    public static void main(String[] args) throws Exception {
+        /** Création des 8 sports */
+        Sport hand = new HandBall();
+        Sport volley = new VolleyBall();
+        Sport fleuret = new Escrime("Fleuret");
+        Sport epee = new Escrime("Épée");
+        Sport haies = new Athletisme(110);
+        Sport relais = new Athletisme(400);
+        Sport brasse = new Natation(100);
+        Sport nageLibre = new Natation(400);
 
-    public static void main(String [] args) {
-        JeuxOlympiques JO2024 = new JeuxOlympiques();
+        /** Création des 16 épreuves */
+        Epreuve brasseH = new Epreuve("100m brasse Homme", 'H', brasse);
+        Epreuve brasseF = new Epreuve("100m brasse Femme", 'F', brasse);
+        Epreuve nageH = new Epreuve("4x100m nage libre Homme", 'H', nageLibre);
+        Epreuve nageF = new Epreuve("4x100m nage libre Femme", 'F', nageLibre);
+        Epreuve relaisH = new Epreuve("4x100m relais Homme", 'H', relais);
+        Epreuve relaisF = new Epreuve("4x100m relais Femme", 'F', relais);
+        Epreuve haiesH = new Epreuve("110m haies Homme", 'H', haies);
+        Epreuve haiesF = new Epreuve("110m haies Femme", 'F', haies);
+        Epreuve epeeH = new Epreuve("Épée Homme", 'H', epee);
+        Epreuve epeeF = new Epreuve("Épée Femme", 'F', epee);
+        Epreuve fleretH = new Epreuve("Fleuret Homme", 'H', fleuret);
+        Epreuve fleretF = new Epreuve("Fleuret Femme", 'F', fleuret);
+        Epreuve volleyH = new Epreuve("VolleyBall Homme", 'H', volley);
+        Epreuve volleyF = new Epreuve("VolleyBall Femme", 'F', volley);
+        Epreuve handH = new Epreuve("HandBall Homme", 'H', hand);
+        Epreuve handF = new Epreuve("HandBall Femme", 'F', hand);
 
-        // les sports
-        Sport natation = new Sport("Natation");
-        Sport volley = new Sport("Volley-Ball");
-        Sport escrime = new Sport("Escrime");
-        Sport athle = new Sport("Athlétisme");
-        Sport hand = new Sport("HandBall");
+        /** Initialisation-Création Jeux Olympiques */
+        JeuxOlympiques jO = new JeuxOlympiques();
 
-        // les epreuves
-        Epreuve natation100mBrasseF = new Epreuve(natation, "100m brasse", 'F', "individuel");
-        Epreuve natation100mBrasseH = new Epreuve(natation, "100m brasse", 'M', "individuel");
-        Epreuve natation4x100mF = new Epreuve(natation, "4x100m libre", 'F', "individuel");
-        Epreuve natation4x100mH = new Epreuve(natation, "4x100m libre", 'M', "individuel");
+        /** Ajout des épreuves au Jeux Olympiques */
+        jO.ajouterEpreuve(brasseH);
+        jO.ajouterEpreuve(brasseF);
+        jO.ajouterEpreuve(nageH);
+        jO.ajouterEpreuve(nageF);
+        jO.ajouterEpreuve(relaisH);
+        jO.ajouterEpreuve(relaisF);
+        jO.ajouterEpreuve(haiesH);
+        jO.ajouterEpreuve(haiesF);
+        jO.ajouterEpreuve(epeeH);
+        jO.ajouterEpreuve(epeeF);
+        jO.ajouterEpreuve(fleretH);
+        jO.ajouterEpreuve(fleretF);
+        jO.ajouterEpreuve(volleyH);
+        jO.ajouterEpreuve(volleyF);
+        jO.ajouterEpreuve(handH);
+        jO.ajouterEpreuve(handF);
 
-        JO2024.ajouterEpreuve(natation100mBrasseF);
-        JO2024.ajouterEpreuve(natation100mBrasseH);
-        JO2024.ajouterEpreuve(natation4x100mF);
-        JO2024.ajouterEpreuve(natation4x100mH);
-
-        Epreuve handFind = new Epreuve(hand, "HandBall", 'F', "individuel");
-        Epreuve handMind = new Epreuve(hand,"HandBall", 'M', "individuel");
-
-        JO2024.ajouterEpreuve(handFind);
-        JO2024.ajouterEpreuve(handMind);
-
-        Epreuve volleyFind = new Epreuve(volley, "Volley-Ball", 'F', "individuel");
-        Epreuve volleyHind = new Epreuve(volley, "Volley-Ball", 'F', "individuel");
-        
-        JO2024.ajouterEpreuve(volleyFind);
-        JO2024.ajouterEpreuve(volleyHind);
-
-        Epreuve escrimeFfind = new Epreuve(escrime, "fleuret", 'F', "individuel");
-        Epreuve escrimeMfind = new Epreuve(escrime,"fleuret", 'M', "individuel");
-        Epreuve escrimeFeind = new Epreuve(escrime, "épée", 'F', "individuel");
-        Epreuve escrimeMeind = new Epreuve(escrime, "épée", 'M', "individuel");
-    
-        JO2024.ajouterEpreuve(escrimeFfind);
-        JO2024.ajouterEpreuve(escrimeFeind);
-        JO2024.ajouterEpreuve(escrimeMfind);
-        JO2024.ajouterEpreuve(escrimeMeind);
-
-        Epreuve athle110mF = new Epreuve(athle, "Athlétisme 110m haies", 'F', "individuel");
-        Epreuve athle110mH = new Epreuve(athle,"Athlétisme 110m haies", 'M', "individuel");
-        Epreuve athle400mF = new Epreuve(athle, "Athlétisme 4x100m haies", 'F', "individuel");
-        Epreuve athle400mH = new Epreuve(athle, "Athlétisme 4x100m haies", 'M', "individuel");
-    
-        JO2024.ajouterEpreuve(athle110mF);
-        JO2024.ajouterEpreuve(athle110mH);
-        JO2024.ajouterEpreuve(athle400mF);
-        JO2024.ajouterEpreuve(athle400mH);
-
-        // les pays
+        /** Création des Pays */
         Pays japon = new Pays("Japon");
         Pays kenya = new Pays("Kenya");
-        Pays allemagne = new Pays("AAlemagne");
+        Pays allemagne = new Pays("Allemagne");
         Pays brésil = new Pays("Brésil");
         Pays france = new Pays("France");
         Pays chine = new Pays("Chine");
@@ -72,180 +65,215 @@ public class Executable {
         Pays usa = new Pays("USA");
         Pays turquie = new Pays("Turquie");
 
-        // les athlètes
-        Athlete athlete0 = new Athlete("Koch", "Emma", 'M', 6, 10, 14, japon, natation);
-        Athlete athlete1 = new Athlete("Guo", "Wei", 'F', 19, 1, 5, usa, volley);
-        Athlete athlete2 = new Athlete("Michel", "Inès", 'F', 1, 7, 18, turquie, athle);
-        Athlete athlete3 = new Athlete("Garcia", "Emma", 'M', 20, 8, 3, brésil, hand); ///
-        Athlete athlete4 = new Athlete("Sun", "Yang", 'F', 11, 11, 5, kenya, hand);
-        Athlete athlete5 = new Athlete("Ishikawa", "Kazuki", 'F', 18, 9, 6, australie, hand);
-        Athlete athlete6 = new Athlete("Hu", "Xia", 'M', 4, 4, 15, usa, volley);
-        Athlete athlete7 = new Athlete("Fournier", "Raphaël", 'F', 3, 16, 14, chine, natation);
-        Athlete athlete8 = new Athlete("Ishikawa", "Naoki", 'M', 12, 13, 6, japon, volley);
-        Athlete athlete9 = new Athlete("Becker", "Maximilian", 'F', 8, 20, 18, chine, athle); //
-        Athlete athlete10 = new Athlete("Huang", "Zhou", 'F', 19, 9, 15, chine, natation);
-        Athlete athlete11 = new Athlete("Zimmermann", "David", 'F', 1, 16, 8, chine, escrime);
-        Athlete athlete12 = new Athlete("Sun", "Jing", 'M', 18, 12, 4, brésil, hand); ///
-        Athlete athlete13 = new Athlete("Guerin", "Nolan", 'M', 10, 8, 12, australie, natation);
-        Athlete athlete14 = new Athlete("Matsumoto", "Yuma", 'F', 9, 1, 8, turquie, natation);
-        Athlete athlete15 = new Athlete("Girard", "Zoé", 'M', 5, 13, 9, france, natation);
-        Athlete athlete16 = new Athlete("Schmidt", "Niklas", 'F', 16, 12, 11, usa, athle);
-        Athlete athlete17 = new Athlete("Inoue", "Ryota", 'M', 18, 17, 9, usa, natation);
-        Athlete athlete18 = new Athlete("Klein", "Luca", 'F', 13, 4, 1, maroc, natation);
-        Athlete athlete19 = new Athlete("Neumann", "Anna", 'M', 8, 15, 16, usa, hand);
-        Athlete athlete20 = new Athlete("He", "Hong", 'F', 10, 11, 15, allemagne, escrime);
-        Athlete athlete21 = new Athlete("Dupont", "Manon", 'F', 12, 20, 11, chine, athle); //
-        Athlete athlete22 = new Athlete("Kimura", "Haruka", 'F', 19, 8, 2, brésil, hand); ///
-        Athlete athlete23 = new Athlete("Roux", "Nathan", 'M', 11, 18, 17, france, escrime);
-        Athlete athlete24 = new Athlete("Gao", "Ma", 'F', 2, 2, 13, chine, hand);
-        Athlete athlete25 = new Athlete("Guerin", "Lola", 'F', 12, 16, 5, maroc, escrime);
-        Athlete athlete26 = new Athlete("Lefebvre", "Lola", 'M', 16, 6, 7, maroc, natation);
-        Athlete athlete27 = new Athlete("Shibata", "Akira", 'M', 7, 16, 17, usa, escrime);
-        Athlete athlete28 = new Athlete("Braun", "Lukas", 'M', 5, 16, 16, france, athle);
-        Athlete athlete29 = new Athlete("Zhang", "Xin", 'F', 11, 5, 10, brésil, hand); ///
-        Athlete athlete30 = new Athlete("Guo", "Zhang", 'M', 20, 8, 4, kenya, athle);
-        Athlete athlete31 = new Athlete("Chen", "Xiang", 'F', 15, 14, 4, japon, escrime);
-        Athlete athlete32 = new Athlete("Yamada", "Daiki", 'M', 19, 14, 12, turquie, natation);
-        Athlete athlete33 = new Athlete("Kato", "Hinata", 'F', 14, 5, 10, chine, athle); //
-        Athlete athlete34 = new Athlete("Giraud", "Sarah", 'M', 1, 2, 8, brésil, hand); ///
-        Athlete athlete35 = new Athlete("Yamaguchi", "Kokoro", 'M', 18, 8, 2, brésil, hand); ///
-        Athlete athlete36 = new Athlete("Sakamoto", "Yuna", 'F', 4, 17, 16, maroc, escrime);
-        Athlete athlete37 = new Athlete("Schmitz", "Tom", 'F', 16, 4, 1, maroc, volley);
-        Athlete athlete38 = new Athlete("Fontaine", "Nathan", 'F', 17, 9, 6, chine, athle); //
-        Athlete athlete39 = new Athlete("Maeda", "Takeshi", 'F', 13, 7, 19, brésil, hand); ///
 
-        JO2024.ajouterAthlete(athlete0);
-        JO2024.ajouterAthlete(athlete1);
-        JO2024.ajouterAthlete(athlete2);
-        JO2024.ajouterAthlete(athlete3);
-        JO2024.ajouterAthlete(athlete4);
-        JO2024.ajouterAthlete(athlete5);
-        JO2024.ajouterAthlete(athlete6);
-        JO2024.ajouterAthlete(athlete7);
-        JO2024.ajouterAthlete(athlete8);
-        JO2024.ajouterAthlete(athlete9);
-        JO2024.ajouterAthlete(athlete10);
-        JO2024.ajouterAthlete(athlete11);
-        JO2024.ajouterAthlete(athlete12);
-        JO2024.ajouterAthlete(athlete13);
-        JO2024.ajouterAthlete(athlete14);
-        JO2024.ajouterAthlete(athlete15);
-        JO2024.ajouterAthlete(athlete16);
-        JO2024.ajouterAthlete(athlete17);
-        JO2024.ajouterAthlete(athlete18);
-        JO2024.ajouterAthlete(athlete19);
-        JO2024.ajouterAthlete(athlete20);
-        JO2024.ajouterAthlete(athlete21);
-        JO2024.ajouterAthlete(athlete22);
-        JO2024.ajouterAthlete(athlete23);
-        JO2024.ajouterAthlete(athlete24);
-        JO2024.ajouterAthlete(athlete25);
-        JO2024.ajouterAthlete(athlete26);
-        JO2024.ajouterAthlete(athlete27);
-        JO2024.ajouterAthlete(athlete28);
-        JO2024.ajouterAthlete(athlete29);
-        JO2024.ajouterAthlete(athlete30);
-        JO2024.ajouterAthlete(athlete31);
-        JO2024.ajouterAthlete(athlete32);
-        JO2024.ajouterAthlete(athlete33);
-        JO2024.ajouterAthlete(athlete34);
-        JO2024.ajouterAthlete(athlete35);
-        JO2024.ajouterAthlete(athlete36);
-        JO2024.ajouterAthlete(athlete37);
-        JO2024.ajouterAthlete(athlete38);
-        JO2024.ajouterAthlete(athlete39);
+        /** Création des athlètes +  Ajouts de résultats */
+        Athlete athlete1 = new Athlete("Michel", "Jack", 'M', 10, 2, 15, france, new Equipe("Michel Jack"));
+        brasseF.ajouterResultat(athlete1, new Score(10, 1,  athlete1));
 
-        // Création d'une équipe
-        Equipe equipAthle1 = new Volley("Equipe de Relais athlétisme");
+        /** Ajout d'athlètes au Jeux Olympiques 
+         * A noter que les places sont à titre d'illustration :
+         * ici les places sont attribués dans l'ordre d'apparition pour simplifier la création des athlètes qui a été effectué par commande python
+        */
+        Athlete athlete2 = new Athlete("Nakamura", "Akira", 'M', 4, 3, 20, maroc,  new Equipe("Nakamura Akira"));
+        fleretF.ajouterResultat(athlete2, new Score(10, 1,  athlete2));
+        Athlete athlete3 = new Athlete("He", "Ling", 'F', 10, 16, 11, australie,  new Equipe("He Ling"));
+        epeeH.ajouterResultat(athlete3, new Score(1, 1,  athlete3));
+        Athlete athlete4 = new Athlete("Kimura", "Haruto", 'F', 10, 1, 6, allemagne,  new Equipe("Kimura Haruto"));
+        fleretH.ajouterResultat(athlete4, new Score(11, 1,  athlete4));
+        Athlete athlete5 = new Athlete("Tanaka", "Aoi", 'M', 7, 20, 4, australie,  new Equipe("Tanaka Aoi"));
+        haiesF.ajouterResultat(athlete5, new Score(4, 1,  athlete5));
+        Athlete athlete6 = new Athlete("Schulze", "Luca", 'F', 8, 17, 15, turquie,  new Equipe("Schulze Luca"));
+        relaisH.ajouterResultat(athlete6, new Score(20, 1,  athlete6));
+        Athlete athlete7 = new Athlete("He", "Xiang", 'M', 4, 8, 4, france,  new Equipe("He Xiang"));
+        fleretH.ajouterResultat(athlete7, new Score(13, 2,  athlete7));
+        Athlete athlete8 = new Athlete("Liu", "Xue", 'M', 20, 4, 16, france,  new Equipe("Liu Xue"));
+        handH.ajouterResultat(athlete8, new Score(6, 1,  athlete8));
+        Athlete athlete9 = new Athlete("Mercier", "Ethan", 'M', 1, 11, 12, allemagne,  new Equipe("Mercier Ethan"));
+        relaisF.ajouterResultat(athlete9, new Score(7, 1,  athlete9));
+        Athlete athlete10 = new Athlete("Shimizu", "Naoki", 'M', 6, 19, 10, chine,  new Equipe("Shimizu Naoki"));
+        epeeF.ajouterResultat(athlete10, new Score(6, 2,  athlete10));
+        Athlete athlete11 = new Athlete("Sakai", "Yusuke", 'M', 17, 10, 3, france,  new Equipe("Sakai Yusuke"));
+        epeeH.ajouterResultat(athlete11, new Score(16, 2,  athlete11));
+        Athlete athlete12 = new Athlete("Muller", "Inès", 'F', 19, 9, 16, turquie,  new Equipe("Muller Inès"));
+        fleretH.ajouterResultat(athlete12, new Score(11, 3,  athlete12));
+        Athlete athlete13 = new Athlete("Huang", "Guo", 'M', 13, 4, 7, france,  new Equipe("Huang Guo"));
+        relaisF.ajouterResultat(athlete13, new Score(16, 2,  athlete13));
+        Athlete athlete14 = new Athlete("Ishii", "Asuka", 'M', 13, 10, 11, turquie,  new Equipe("Ishii Asuka"));
+        epeeH.ajouterResultat(athlete14, new Score(12, 3,  athlete14));
+        Athlete athlete15 = new Athlete("Zhao", "Xue", 'F', 1, 11, 17, japon,  new Equipe("Zhao Xue"));
+        fleretF.ajouterResultat(athlete15, new Score(8, 2,  athlete15));
+        Athlete athlete16 = new Athlete("Murakami", "Yui", 'F', 17, 13, 3, usa,  new Equipe("Murakami Yui"));
+        relaisF.ajouterResultat(athlete16, new Score(3, 3,  athlete16));
+        Athlete athlete17 = new Athlete("Robin", "Sarah", 'F', 18, 12, 20, kenya,  new Equipe("Robin Sarah"));
+        fleretF.ajouterResultat(athlete17, new Score(17, 3,  athlete17));
+        Athlete athlete18 = new Athlete("Zhou", "Liu", 'M', 20, 9, 16, usa,  new Equipe("Zhou Liu"));
+        epeeF.ajouterResultat(athlete18, new Score(16, 3,  athlete18));
+        Athlete athlete19 = new Athlete("Lin", "Wang", 'F', 14, 14, 12, turquie,  new Equipe("Lin Wang"));
+        nageF.ajouterResultat(athlete19, new Score(11, 1,  athlete19));
+        Athlete athlete20 = new Athlete("Schulze", "Emma", 'M', 8, 7, 4, brésil,  new Equipe("Schulze Emma"));
+        handF.ajouterResultat(athlete20, new Score(16, 1,  athlete20));
+        Athlete athlete21 = new Athlete("Murakami", "Ryota", 'F', 17, 3, 18, usa,  new Equipe("Murakami Ryota"));
+        epeeF.ajouterResultat(athlete21, new Score(18, 4,  athlete21));
+        Athlete athlete22 = new Athlete("Liu", "Wu", 'M', 14, 3, 15, maroc,  new Equipe("Liu Wu"));
+        handF.ajouterResultat(athlete22, new Score(17, 2,  athlete22));
+        Athlete athlete23 = new Athlete("Watanabe", "Kokoro", 'M', 20, 20, 6, japon,  new Equipe("Watanabe Kokoro"));
+        nageH.ajouterResultat(athlete23, new Score(13, 1,  athlete23));
+        Athlete athlete24 = new Athlete("Yamaguchi", "Yuna", 'F', 12, 11, 11, maroc,  new Equipe("Yamaguchi Yuna"));
+        fleretF.ajouterResultat(athlete24, new Score(13, 4,  athlete24));
+        Athlete athlete25 = new Athlete("Zhou", "Wang", 'F', 16, 9, 6, turquie,  new Equipe("Zhou Wang"));
+        volleyH.ajouterResultat(athlete25, new Score(20, 1,  athlete25));
+        Athlete athlete26 = new Athlete("Sakamoto", "Ren", 'M', 3, 15, 8, maroc,  new Equipe("Sakamoto Ren"));
+        brasseF.ajouterResultat(athlete26, new Score(6, 2,  athlete26));
+        Athlete athlete27 = new Athlete("Bernard", "Clara", 'M', 5, 6, 15, kenya,  new Equipe("Bernard Clara"));
+        nageH.ajouterResultat(athlete27, new Score(13, 2,  athlete27));
+        Athlete athlete28 = new Athlete("Nakamura", "Kazuki", 'F', 8, 10, 3, kenya,  new Equipe("Nakamura Kazuki"));
+        relaisH.ajouterResultat(athlete28, new Score(5, 2,  athlete28));
+        Athlete athlete29 = new Athlete("Guo", "Wang", 'F', 17, 6, 19, kenya,  new Equipe("Guo Wang"));
+        brasseH.ajouterResultat(athlete29, new Score(15, 1,  athlete29));
+        Athlete athlete30 = new Athlete("Mercier", "Camille", 'F', 12, 4, 12, kenya,  new Equipe("Mercier Camille"));
+        fleretF.ajouterResultat(athlete30, new Score(11, 5,  athlete30));
+        Athlete athlete31 = new Athlete("Giraud", "Sacha", 'F', 17, 19, 6, allemagne,  new Equipe("Giraud Sacha"));
+        handF.ajouterResultat(athlete31, new Score(7, 3,  athlete31));
+        Athlete athlete32 = new Athlete("Ogawa", "Yuna", 'M', 8, 12, 8, kenya,  new Equipe("Ogawa Yuna"));
+        handF.ajouterResultat(athlete32, new Score(17, 4,  athlete32));
+        Athlete athlete33 = new Athlete("Perez", "Tom", 'M', 14, 11, 13, turquie,  new Equipe("Perez Tom"));
+        haiesH.ajouterResultat(athlete33, new Score(3, 1,  athlete33));
 
-        equipAthle1.ajouteMembres(athlete9);
-        equipAthle1.ajouteMembres(athlete21);
-        equipAthle1.ajouteMembres(athlete33);
-        equipAthle1.ajouteMembres(athlete38);
+        /** Création d'une équipe + Ajout de résultats */
+        Equipe equipe1 = new Equipe("Equipe Number ONE");
+        Athlete athlete40 = new Athlete("Bernard", "Gabriel", 'M', 6, 10, 8, france,  equipe1);
+        handH.ajouterResultat(athlete40, new Score(11, 1,  athlete40));
+        equipe1.ajouteAthlete(athlete40);
+        Athlete athlete41 = new Athlete("Durand", "Paul", 'M', 16, 11, 10, france,  equipe1);
+        handH.ajouterResultat(athlete41, new Score(16, 1,  athlete41));
+        equipe1.ajouteAthlete(athlete41);
+        Athlete athlete42 = new Athlete("Faure", "Mathis", 'M', 11, 17, 7, france,  equipe1);
+        handH.ajouterResultat(athlete42, new Score(14, 1,  athlete42));
+        equipe1.ajouteAthlete(athlete42);
+        Athlete athlete43 = new Athlete("Fontaine", "Nathan", 'M', 17, 10, 2, france,  equipe1);
+        handH.ajouterResultat(athlete43, new Score(6, 1,  athlete43));
+        equipe1.ajouteAthlete(athlete43);
+        Athlete athlete44 = new Athlete("Morel", "Camille", 'M', 3, 11, 4, france,  equipe1);
+        handH.ajouterResultat(athlete44, new Score(10, 1,  athlete44));
+        equipe1.ajouteAthlete(athlete44);
+        Athlete athlete45 = new Athlete("Mercier", "Emma", 'M', 19, 19, 12, france,  equipe1);
+        handH.ajouterResultat(athlete45, new Score(10, 1,  athlete45));
+        equipe1.ajouteAthlete(athlete45);
+        Athlete athlete46 = new Athlete("Thomas", "Juliette", 'M', 3, 10, 15, france,  equipe1);
+        handH.ajouterResultat(athlete46, new Score(18, 1,  athlete46));
+        equipe1.ajouteAthlete(athlete46);
 
-        Equipe equipHand1 = new Handball("Equipe de HandBall 1");
+        Equipe equipe2 = new Equipe("Equipe Number TWO");
+        Athlete athlete34 = new Athlete("Huang", "Xiang", 'H', 6, 13, 17, chine,  equipe2);
+        volleyH.ajouterResultat(athlete34, new Score(8, 1,  athlete34));
+        equipe2.ajouteAthlete(athlete34);
+        Athlete athlete35 = new Athlete("Yang", "Guo", 'H', 17, 11, 13, chine,  equipe2);
+        volleyH.ajouterResultat(athlete35, new Score(13, 1,  athlete35));
+        equipe2.ajouteAthlete(athlete35);
+        Athlete athlete36 = new Athlete("Wang", "Shuang", 'H', 4, 5, 18, chine,  equipe2);
+        volleyH.ajouterResultat(athlete36, new Score(20, 1,  athlete36));
+        equipe2.ajouteAthlete(athlete36);
+        Athlete athlete37 = new Athlete("Gao", "Lan", 'H', 18, 1, 19, chine,  equipe2);
+        volleyH.ajouterResultat(athlete37, new Score(2, 1,  athlete37));
+        equipe2.ajouteAthlete(athlete37);
+        Athlete athlete38 = new Athlete("Zhao", "Xiang", 'H', 1, 11, 4, chine,  equipe2);
+        volleyH.ajouterResultat(athlete38, new Score(16, 1,  athlete38));
+        equipe2.ajouteAthlete(athlete38);
+        Athlete athlete39 = new Athlete("Ma", "Jing", 'H', 13, 17, 16, chine,  equipe2);
+        volleyH.ajouterResultat(athlete39, new Score(7, 2,  athlete39));
+        equipe2.ajouteAthlete(athlete39);
 
-        equipHand1.ajouteMembres(athlete39);
-        equipHand1.ajouteMembres(athlete35);
-        equipHand1.ajouteMembres(athlete34);
-        equipHand1.ajouteMembres(athlete29);
-        equipHand1.ajouteMembres(athlete12);
-        equipHand1.ajouteMembres(athlete3);
-        equipHand1.ajouteMembres(athlete22);
 
-        // ajout de résultat
-        athlete9.ajouteResultat(10, athle110mH);
-        athlete21.ajouteResultat(15, athle110mH);
-        athlete33.ajouteResultat(5, athle110mH);
-        athlete38.ajouteResultat(18, athle110mH);
+        /** Ajout d'une équipe et d'athlètes au Jeux Olympiques */
+        jO.ajouterAthlete(athlete1);
+        jO.ajouterAthlete(athlete2);
+        jO.ajouterAthlete(athlete3);
+        jO.ajouterAthlete(athlete4);
+        jO.ajouterAthlete(athlete5);
+        jO.ajouterAthlete(athlete6);
+        jO.ajouterAthlete(athlete7);
+        jO.ajouterAthlete(athlete8);
+        jO.ajouterAthlete(athlete9);
+        jO.ajouterAthlete(athlete10);
+        jO.ajouterAthlete(athlete11);
+        jO.ajouterAthlete(athlete12);
+        jO.ajouterAthlete(athlete13);
+        jO.ajouterAthlete(athlete14);
+        jO.ajouterAthlete(athlete15);
+        jO.ajouterAthlete(athlete16);
+        jO.ajouterAthlete(athlete17);
+        jO.ajouterAthlete(athlete18);
+        jO.ajouterAthlete(athlete19);
+        jO.ajouterAthlete(athlete20);
+        jO.ajouterAthlete(athlete21);
+        jO.ajouterAthlete(athlete22);
+        jO.ajouterAthlete(athlete23);
+        jO.ajouterAthlete(athlete24);
+        jO.ajouterAthlete(athlete25);
+        jO.ajouterAthlete(athlete26);
+        jO.ajouterAthlete(athlete27);
+        jO.ajouterAthlete(athlete28);
+        jO.ajouterAthlete(athlete29);
+        jO.ajouterAthlete(athlete30);
+        jO.ajouterAthlete(athlete31);
+        jO.ajouterAthlete(athlete32);
+        jO.ajouterAthlete(athlete33);
+        jO.ajouterAthlete(athlete34);
+        jO.ajouterAthlete(athlete35);
+        jO.ajouterAthlete(athlete36);
+        jO.ajouterAthlete(athlete37);
+        jO.ajouterAthlete(athlete38);
+        jO.ajouterAthlete(athlete39);
+        jO.ajouterAthlete(athlete40);
+        jO.ajouterAthlete(athlete41);
+        jO.ajouterAthlete(athlete42);
+        jO.ajouterAthlete(athlete43);
+        jO.ajouterAthlete(athlete44);
+        jO.ajouterAthlete(athlete45);
+        jO.ajouterAthlete(athlete46);
 
-        System.out.println("Le score de l'athlète " + athlete9 + " à la discipline : " + athlete9.getSport() + " est de : " + athlete9.participer(athle110mH));
-        System.out.println("Le score de l'athlète " + athlete21 + " à la discipline : " + athlete21.getSport() + " est de : " + athlete21.participer(athle110mH));
-        System.out.println("Le score de l'athlète " + athlete33 + " à la discipline : " + athlete33.getSport() + " est de : " + athlete33.participer(athle110mH));
-        System.out.println("Le score de l'athlète " + athlete38 + " à la discipline : " + athlete38.getSport() + " est de : " + athlete38.participer(athle110mH));
 
-        JO2024.enregistrerResultat(equipAthle1, athle110mH, athlete9.participer(athle110mH)+athlete21.participer(athle110mH)+athlete33.participer(athle110mH)+athlete38.participer(athle110mH));
+        jO.ajouterEquipe(equipe1);
+        jO.ajouterEquipe(equipe2);
 
-        athlete0.ajouteResultat(6, athle400mH);
-        athlete1.ajouteResultat(8, natation4x100mF);
-        athlete2.ajouteResultat(13, escrimeFfind);
-        athlete3.ajouteResultat(8, escrimeMfind);
-        athlete4.ajouteResultat(20, natation100mBrasseH);
-        athlete5.ajouteResultat(16, athle400mF);
-        athlete6.ajouteResultat(7, athle400mH);
-        athlete7.ajouteResultat(18, escrimeMeind);
-        athlete8.ajouteResultat(8, escrimeFfind);
-        athlete9.ajouteResultat(1, volleyFind);
-        athlete10.ajouteResultat(3, escrimeMfind);
-        athlete11.ajouteResultat(14, athle400mF);
-        athlete12.ajouteResultat(6, volleyFind);
-        athlete13.ajouteResultat(16, handFind);
-        athlete14.ajouteResultat(18, athle400mH);
-        athlete15.ajouteResultat(18, escrimeMfind);
-        athlete16.ajouteResultat(4, volleyFind);
-        athlete17.ajouteResultat(20, natation100mBrasseH);
-        athlete18.ajouteResultat(1, handMind);
-        athlete19.ajouteResultat(8, natation4x100mF);
-        athlete20.ajouteResultat(12, athle400mF);
-        athlete21.ajouteResultat(14, escrimeMfind);
-        athlete22.ajouteResultat(8, natation100mBrasseH);
-        athlete23.ajouteResultat(16, natation100mBrasseH);
-        athlete24.ajouteResultat(4, escrimeMeind);
-        athlete25.ajouteResultat(20, natation4x100mH);
-        athlete26.ajouteResultat(11, natation4x100mF);
-        athlete27.ajouteResultat(3, natation4x100mF);
-        athlete28.ajouteResultat(17, athle400mF);
-        athlete29.ajouteResultat(17, escrimeMeind);
-        athlete30.ajouteResultat(18, escrimeFfind);
-        athlete31.ajouteResultat(18, natation100mBrasseH);
-        athlete32.ajouteResultat(2, athle110mH);
-        athlete33.ajouteResultat(12, escrimeFeind);
-        athlete34.ajouteResultat(11, escrimeMfind);
-        athlete35.ajouteResultat(17, natation4x100mH);
-        athlete36.ajouteResultat(15, escrimeMeind);
-        athlete37.ajouteResultat(7, escrimeMfind);
-        athlete38.ajouteResultat(11, handFind);
-        athlete39.ajouteResultat(18, escrimeFfind);
+        /** Affichages des athlètes */
+        System.out.println(System.lineSeparator() + "Affichage des athlètes des JO : " + System.lineSeparator());
+        System.out.println(jO.getLesAthletes());
 
-        // obtenir classement avec résultats
+        /** Affichages des équipes */
+        System.out.println(System.lineSeparator() + "Affichage des équipes des JO : " + System.lineSeparator());
+        System.out.println(jO.getLesEquipes());
 
-        System.out.println(athle110mH.ClassementEpreuve());
-        
-        System.out.println(JO2024.consulterAthlete());
-        List<Athlete> listeTriee = new ArrayList<>();
-        listeTriee.addAll(JO2024.consulterAthlete());
-        Collections.sort(listeTriee);
-        System.out.println(listeTriee);
+        /** Affichages des épreuves */
+        System.out.println(System.lineSeparator() + "Affichage des épreuves au JO : " + System.lineSeparator());
+        System.out.println(jO.getLesEpreuves());
 
-        // obtenir résultat d'un athlète
+        /** Affichages des pays */
+        System.out.println(System.lineSeparator() + "Affichage des pays au JO : " + System.lineSeparator());
+        System.out.println(jO.getLesPays());
 
-        System.out.println(JO2024.consulterEpreuve());
-        System.out.println(JO2024.consulterPays());
-        System.out.println(JO2024.participer(athlete39, escrimeFfind));
-        System.out.println(JO2024.participer(equipAthle1, athle110mH));
-        System.out.println(athlete12.obtenirNom());
-        System.out.println(athlete12.getMesResultats());
-        athlete1.inscrireDansEquipe(equipHand1);
-        System.out.println(equipHand1.getMembres());   
+        /** Classement selon médailles des athlètes */
+        System.out.println(System.lineSeparator() + "Affichage classement selon médailles au JO : " + System.lineSeparator());
+
+
+        /** Classement selon résultat Athlètes */
+        System.out.println(System.lineSeparator() + "Affichage classement selon résultat total des Athlètes au JO : " + System.lineSeparator());
+        List<Athlete> listeTrieeA = new ArrayList<>();
+        listeTrieeA.addAll(jO.getLesAthletes());
+        Collections.sort(listeTrieeA);
+        System.out.println(listeTrieeA);
+
+        /** Classement selon résultat Equipe */
+        System.out.println(System.lineSeparator() + "Affichage classement selon résultat total des équipes au JO : " + System.lineSeparator());
+        List<Equipe> listeTrieeE = new ArrayList<>();
+        listeTrieeE.addAll(jO.getLesEquipes());
+        Collections.sort(listeTrieeE);
+        System.out.println(listeTrieeE + System.lineSeparator());
+
+        /** Connaitre le nombre de médailles d'un athlète */
+        System.out.println(System.lineSeparator() + "Affichage du nombre de médailles d'un athlète : " + System.lineSeparator());
+        System.out.println("Nombre de médailles d'or : " + athlete10.getNbOr());
+        System.out.println("Nombre de médailles d'argent : " + athlete10.getNbArgent());
+        System.out.println("Nombre de médailles de bronze : " + athlete10.getNbBronze());
     }
 }

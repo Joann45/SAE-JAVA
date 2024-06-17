@@ -1,7 +1,13 @@
-package src;
+
+import java.io.FileNotFoundException;
+
+import src.Epreuve;
+import src.JeuxOlympiques;
+import src.Sport;
 
 public class ExecutableCsv {
-    JeuxOlympiques JO2025 = new JeuxOlympiques();
+    public static void main(String[] args) throws FileNotFoundException {
+        JeuxOlympiques JO2025 = new JeuxOlympiques();
 
         // les sports
         Sport natation = new Sport("Natation");
@@ -53,17 +59,7 @@ public class ExecutableCsv {
         JO2025.ajouterEpreuve(athle400mF);
         JO2025.ajouterEpreuve(athle400mH);
 
-        // les pays
-        Pays japon = new Pays("Japon");
-        Pays kenya = new Pays("Kenya");
-        Pays allemagne = new Pays("AAlemagne");
-        Pays brésil = new Pays("Brésil");
-        Pays france = new Pays("France");
-        Pays chine = new Pays("Chine");
-        Pays australie = new Pays("Australie");
-        Pays maroc = new Pays("Maroc");
-        Pays usa = new Pays("USA");
-        Pays turquie = new Pays("Turquie");
-
-
+        JO2025.ajouterAthleteCsv("donnees.csv");
+        System.out.println(JO2025.consulterAthlete());
+    }
 }

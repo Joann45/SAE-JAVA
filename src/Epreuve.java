@@ -1,87 +1,98 @@
-package src;
-/**
-*@author Joann
-*/
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class Epreuve {
-
-    private final Sport sport;
-    private final String nomEpreuve;
+public class Epreuve implements Comparable<Epreuve> {
+    
     private char genre;
-    private String competition;
+    private String nomEpreuve;
 
-    private List<Resultat> lesResultats;
+    private Sport sport;
 
-    public Epreuve(Sport sport, String nomEpreuve, char genre, String competition) {
-        this.sport = sport;
-        this.nomEpreuve = nomEpreuve;
+    private double score;
+
+    private Map<Participant, Score> equipeResultat;
+
+    /**
+     * Construit une instance d'Epreuve
+     * @param nomE le nom de l'épreuve
+     * @param genre le genre de l'épreuve ('M' pour masculin ou 'F' pour féminin)
+     * @param sport le sport concerné par l'épreuve
+     */
+    public Epreuve(String nomE, char genre, Sport sport) {
+        this.nomEpreuve = nomE;
         this.genre = genre;
-        this.competition = competition;
-        this.lesResultats = new ArrayList<>();
-    }
-
-    public Sport getSport() {
-        return this.sport;
+        this.sport = sport;
+        this.equipeResultat = new HashMap<>();
     }
 
     public String getNomEpreuve() {
         return this.nomEpreuve;
     }
 
-    public char getGenreEpreuve() {
+    public char getGenre() {
         return this.genre;
     }
 
-    public String getCompetition() {
-        return this.competition;
+    public Sport getSport() {
+        return this.sport;
     }
 
-    // Rajouter (01/06/2024)
-    public void ajouterResultat(Resultat resultat) {
-        this.lesResultats.add(resultat);
+    /**
+     * Ajoute un résultat d'une équipe à l'épreuve
+     * @param equipe une équipe
+     * @param resultat son résultat
+     */
+    public void ajouterResultat(Participant participant, Score resultat) {
+        this.equipeResultat.put(participant, resultat);
+        this.score += resultat.getScore();
     }
 
-    // Rajouter (01/06/2024)
-    public List<Resultat> getResultats() {
-        return this.lesResultats;
+    /**
+     * Modifie le résultat d'une équipe à l'épreuve
+     * @param equipe une équipe
+     * @param ancienScore son ancien score
+     * @param newRes son nouveau score
+     */
+    public void modifierResultat(Participant participant, Score ancienScore, Score newRes) {
+        this.equipeResultat.replace(participant, ancienScore, newRes);
+        this.score = this.score - ancienScore.getScore() + newRes.getScore();
     }
 
-    // Rajouter (01/06/2024)
-    public List<Resultat> ClassementEpreuve() {
-        ComparateurResultat comp = new ComparateurResultat();
-        Collections.sort(this.lesResultats, comp);
-        return this.lesResultats;
+    /**
+     * Retire le résultat d'une équipe à l'épreuve
+     * @param equipe une équipe
+     * @param res son résultat
+     */
+    public void retirerResultat(Participant participant, Score res) {
+        this.equipeResultat.remove(participant, res);
+        this.score -= res.getScore();
+    }
+    
+    /**
+     * Retourne le score d'une équipe à l'épreuve
+     * @param equipe une équipe
+     * @return un Score qu'a réalisé l'équipe dans cet épreuve.
+     */
+    public Score getScore(Participant participant) {
+        return this.equipeResultat.get(participant);
+    }
+
+    @Override
+    public String toString(){
+        String res = "Nom de l'épreuve: "+ this.nomEpreuve + System.lineSeparator();
+        res += "Genre de l'épreuve: " + this.genre + System.lineSeparator();
+        res += "Sport :" + this.sport + System.lineSeparator();
+        res += "Les scores de chaque participant: ";
+        for (Map.Entry<Participant, Score> kv : this.equipeResultat.entrySet()){
+            res += "("+kv.getKey()+", "+ kv.getValue()+")";
+        }
+        res += System.lineSeparator();
+        return res;
     }
     
     @Override
-    public boolean equals(Object obj) {
-        if(obj == null) {return false;}
-        if(this == obj) {return true;}
-        if (!(obj instanceof Epreuve)) {return false;}
-
-        Epreuve tmp = (Epreuve) obj;
-        return this.sport.equals(tmp.sport) && this.nomEpreuve.equals(tmp.nomEpreuve) && this.genre == tmp.genre && this.competition.equals(tmp.competition) && this.lesResultats.equals(tmp.lesResultats);
-    }
-    
-// ---------------------------------------------------------------------------------------------------------- //
-
-    
-
-    public void setGenre(char genre) {
-        this.genre = genre;
+    public int compareTo(Epreuve uneEpreuve) {
+        return Double.compare(this.score, uneEpreuve.score) * -1;
     }
 
-    public void setCompetition(String competition) {
-        this.competition = competition;
-    }
-
-    @Override
-    public String toString() {
-        return "Epreuve [sport=" + sport + ", nomEpreuve=" + nomEpreuve + ", genre=" + genre + ", competition="
-                + competition + ", lesResultats=" + lesResultats + "]";
-    }
 }

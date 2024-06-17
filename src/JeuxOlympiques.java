@@ -1,38 +1,29 @@
-package src;
-/**
-*@author Joann
-*/
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class JeuxOlympiques {
+    
     private Set<Epreuve> lesEpreuves;
-    private Set<Pays> lesPays;
     private List<Athlete> lesAthletes;
+    private List<Equipe> lesEquipes;
 
-    // Transformation de lesEpreuves et lesPays en ensemble
     public JeuxOlympiques() {
         this.lesEpreuves = new HashSet<>();
-        this.lesPays = new HashSet<>();
         this.lesAthletes = new ArrayList<>();
+        this.lesEquipes = new ArrayList<>();
     }
 
-    public void ajouterAthlete(String nom, String prenom, char sexe, Sport sport, int force, int agilite, int endurance, Pays pays) {
-        Athlete unAthlete = new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, sport);
-        this.lesAthletes.add(unAthlete);
-        pays.ajouterAthlete(unAthlete);
-        if (!this.lesPays.contains(pays)){ // plus nécessaire car lesPays devient un ensemble
-            this.lesPays.add(pays);
-        }
+    public Set<Epreuve> getLesEpreuves() {
+        return this.lesEpreuves;
     }
+
 
     public void ajouterAthleteCsv(String fileName) {
         String line = "";
@@ -46,64 +37,84 @@ public class JeuxOlympiques {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void ajouterEpreuve(Sport sport, String nomEpreuve, char genre, String competition) {
-        Epreuve uneEpreuve = new Epreuve(sport, nomEpreuve, genre, competition);
-        this.lesEpreuves.add(uneEpreuve);
-    }
 
     public void ajouterEpreuve(Epreuve epreuve) {
         this.lesEpreuves.add(epreuve);
+
+    }
+
+    public void retirerEpreuve(Epreuve epreuve) {
+        this.lesEpreuves.remove(epreuve);
+    }
+
+
+    public List<Athlete> getLesAthletes() {
+        return this.lesAthletes;
     }
 
     public void ajouterAthlete(Athlete athlete) {
         this.lesAthletes.add(athlete);
-        athlete.getPays().ajouterAthlete(athlete);
-        if (!this.lesPays.contains(athlete.getPays())){ // plus nécessaire car lesPays devient un ensemble
-            this.lesPays.add(athlete.getPays());
+    }
+
+    public void ajouterAthlete(String nomA, String prenomA, char sexeA, int force, int agilite, int endurance, Pays paysA, Equipe equipe) {
+        this.lesAthletes.add(new Athlete(nomA, prenomA, sexeA, force, agilite, endurance, paysA, equipe));
+    }
+
+    public void ajouterAthleteCSV(String fileName) {
+        try {
+            List<String> lignes = Files.readAllLines(Paths.get(fileName));
+            for (String ligne : lignes) {
+                String[] details = ligne.split(";");
+                if (details.length == 8) {
+                    String nom = details[0];
+                    String prenom = details[1];
+                    char sexe = details[2].charAt(0);
+                    int force = Integer.parseInt(details[3]);
+                    int agilite = Integer.parseInt(details[4]);
+                    int endurance = Integer.parseInt(details[5]);
+                    Pays pays = new Pays(details[6]);
+                    Equipe tmp = new Equipe(details[7]);
+                    if (!(this.lesEquipes.contains(tmp))) {
+                        Athlete athlete = new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, tmp);
+                        ajouterAthlete(athlete);
+                    }
+                    else {
+                        for (Equipe equip : this.lesEquipes) {
+                            if (equip.equals(tmp)) {
+                                Athlete athlete = new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, equip);
+                                ajouterAthlete(athlete);
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (IOException e) {
         }
     }
 
-
-/* 
-    public boolean lancerEpreuve() {
-        return true;
-    }
-*/
-
-    // Oui on verra lors de la semaine SAE (Thomas - 18.05)
-    public void enregistrerResultat(Participant participant, Epreuve epreuve, int score) {
-        //* JDBC ??? */
-        if (participant instanceof Athlete sportif) {
-            sportif.ajouteResultat(score, epreuve);
+    public Set<Pays> getLesPays() {
+        Set<Pays> listePays = new HashSet<>();
+        for (Athlete athlete : this.lesAthletes) {
+            listePays.add(athlete.getPaysAthlete());
         }
-        else {
-            Equipe equipe = (Equipe) participant;
-            equipe.ajouteResultat(score, epreuve);
-        }
-        
+        return listePays;
     }
 
-    public Set<Epreuve> consulterEpreuve() {
-        return this.lesEpreuves;
+    public void retirerAthlete(Athlete athlete) {
+        this.lesAthletes.remove(athlete);
+    }
+    
+
+    public List<Equipe> getLesEquipes() {
+        return this.lesEquipes;
     }
 
-    public Set<Pays> consulterPays() {
-        return this.lesPays;
+    public void ajouterEquipe(Equipe equipe) {
+        this.lesEquipes.add(equipe);
     }
 
-    public List<Athlete> consulterAthlete() {
-        return this.lesAthletes;
-    }
-
-    public int participer(Participant participant, Epreuve epreuve) {
-        if (participant instanceof Athlete sportif) {
-            return sportif.participer(epreuve);
-        }
-        else {
-            Equipe equipe = (Equipe) participant;
-            return equipe.participer(epreuve);
-        }
+    public void retirerEquipe(Equipe equipe) {
+        this.lesEquipes.remove(equipe);
     }
 }
