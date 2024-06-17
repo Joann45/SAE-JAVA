@@ -24,8 +24,23 @@ public class JeuxOlympiques {
         return this.lesEpreuves;
     }
 
+
+    public void ajouterAthleteCsv(String fileName) {
+        String line = "";
+        String cvsSplitBy = ",";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            while ((line = br.readLine()) != null) {
+                String[] columns = line.split(cvsSplitBy);
+                System.out.println("Nom : " + columns[0] + " , Prénom : " + columns[1] + " , Sexe : " + columns[2] + " , Force : " + columns[3] + " , Agilite : " + columns[4] + " , Endurance : " + columns[5] + " , Pays : " + columns[6] + " , Sport : " + columns[7]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     public void ajouterEpreuve(Epreuve epreuve) {
         this.lesEpreuves.add(epreuve);
+
     }
 
     public void retirerEpreuve(Epreuve epreuve) {
