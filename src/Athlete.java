@@ -72,14 +72,17 @@ public class Athlete implements Participant, Comparable<Athlete> {
         if (place == 1) {
             this.nbOr++;
             equipe.setPlacement(1);
+            paysAthlete.setPlacement(1);
         }
         if (place == 2) {
             this.nbArgent++;
             equipe.setPlacement(2);
+            paysAthlete.setPlacement(2);
         }
         if (place == 3) {
             this.nbBronze++;
             equipe.setPlacement(3);
+            paysAthlete.setPlacement(3);
         }
     }
     
@@ -183,5 +186,13 @@ public class Athlete implements Participant, Comparable<Athlete> {
         return Double.compare(this.score, unAthlete.score) * -1;
     }
 
+@Override
+public boolean equals(Object o){
+    if (o == null){return false;}
+    if (o==this){return true;}
+    if (!(o instanceof Athlete)){return false;}
+    Athlete a1 = (Athlete) o;
+    return this.prenomAthlete.equals(a1.prenomAthlete) && this.nomAthlete.equals(a1.prenomAthlete) && this.paysAthlete.equals(a1.paysAthlete);
+}
     
 }

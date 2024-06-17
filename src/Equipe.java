@@ -1,6 +1,5 @@
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Equipe implements Participant, Comparable<Equipe>{
     
@@ -9,13 +8,13 @@ public class Equipe implements Participant, Comparable<Equipe>{
     private int nbOr = 0;
     private int nbArgent = 0;
     private int nbBronze = 0;
-    private List<Athlete> lesMembres;
-    private List<Epreuve> lesEpreuves;
+    private Set<Athlete> lesMembres;
+    private Set<Epreuve> lesEpreuves;
     
     public Equipe(String nomEquipe){
         this.nomEquipe = nomEquipe;
-        this.lesMembres = new ArrayList<>();
-        this.lesEpreuves = new ArrayList<>();
+        this.lesMembres = new HashSet<>();
+        this.lesEpreuves = new HashSet<>();
     }
 
     public void ajouteAthlete(Athlete athlete){
@@ -29,8 +28,10 @@ public class Equipe implements Participant, Comparable<Equipe>{
         else {this.lesMembres.add(athlete);}
     }
 
-    // public void retirerAthlete(Athlete athlete);
-
+    public void enleverAthlete(Athlete athlete){
+        this.lesMembres.remove(athlete);
+    }
+    
     @Override
     public int getNbOr(){
         return this.nbOr;
@@ -61,7 +62,10 @@ public class Equipe implements Participant, Comparable<Equipe>{
     }
 
     public Pays getPaysEquipe() {
-        return this.lesMembres.get(0).getPaysAthlete();
+        for (Athlete athlete: this.lesMembres){
+            return athlete.getPaysAthlete();
+        }
+        return null;
     }
 
     public void ajouteEpreuve(Epreuve epreuve){
@@ -88,7 +92,7 @@ public class Equipe implements Participant, Comparable<Equipe>{
     @Override
     public String toString(){
         String res = "Nom de l'équipe: "+this.nomEquipe + System.lineSeparator();
-        res += "Nationalité de l'équipe: "+this.lesMembres.get(0).getPaysAthlete()+ System.lineSeparator();
+        res += "Nationalité de l'équipe: "+getPaysEquipe();
         res += "Liste des athlètes: ";  
         for (Athlete athlete: this.lesMembres){
             res += athlete + ", ";
