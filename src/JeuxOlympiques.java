@@ -47,7 +47,6 @@ public class JeuxOlympiques {
             e.printStackTrace();
         }
     }
-    }
 
     public void ajouterEpreuve(Sport sport, String nomEpreuve, char genre, String competition) {
         Epreuve uneEpreuve = new Epreuve(sport, nomEpreuve, genre, competition);
