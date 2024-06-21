@@ -1,3 +1,4 @@
+import csv
 import random
 
 # Noms et prénoms aléatoires
@@ -45,11 +46,12 @@ for i in range(1, 40):
     place = dict[epreuve]
     dict[epreuve] = place +1
     
-    print(f"Athlete athlete{i} = new Athlete(''{nom}'', ''{prenom}'', '{sexe}', {force}, {agilite}, {endurance}, {pays_choice},  new Equipe(''{equip}''));")
-    print(f"{epreuve}.ajouterResultat(athlete{i}, new Score({random.randint(1,20)}, {place},  athlete{i}));")
+    #print(f"Athlete athlete{i} = new Athlete(''{nom}'', ''{prenom}'', '{sexe}', {force}, {agilite}, {endurance}, {pays_choice},  new Equipe(''{equip}''));")
+    #print(f"{epreuve}.ajouterResultat(athlete{i}, new Score({random.randint(1,20)}, {place},  athlete{i}));")
     
 for nom in epreuves :
     dict[nom] = 1
+records = []
 for i in range(40, 47):
     nom = random.choice(noms_fr)
     prenom = random.choice(prenoms_fr)
@@ -59,22 +61,32 @@ for i in range(40, 47):
     epreuve = random.choice(epreuves)
     place = dict[epreuve]
     dict[epreuve] = place +1
-    print(f"Athlete athlete{i} = new Athlete(''{nom}'', ''{prenom}'', 'H', {force}, {agilite}, {endurance}, france,  equipe1);")
-    print(f"handH.ajouterResultat(athlete{i}, new Score({random.randint(1,20)}, {place},  athlete{i}));")
+    records.append([nom, prenom, sexe, force, agilite, endurance, pays, equip])
+    #print(f"Athlete athlete{i} = new Athlete(''{nom}'', ''{prenom}'', 'H', {force}, {agilite}, {endurance}, france,  equipe1);")
+    #print(f"handH.ajouterResultat(athlete{i}, new Score({random.randint(1,20)}, {place},  athlete{i}));")
     
-for i in range(1,47):
-    print(f"jO.ajouterAthlete(athlete{i});")
+#for i in range(1,47):
+#    print(f"jO.ajouterAthlete(athlete{i});")
     
-for nom in epreuves :
-    dict[nom] = 1
-for i in range(34, 40):
-    nom = random.choice(noms_cn)
-    prenom = random.choice(prenoms_cn)
-    force = random.randint(1, 20)
-    endurance = random.randint(1, 20)
-    agilite = random.randint(1, 20)
-    epreuve = random.choice(epreuves)
-    place = dict[epreuve]
-    dict[epreuve] = place +1
-    print(f"Athlete athlete{i} = new Athlete(''{nom}'', ''{prenom}'', 'H', {force}, {agilite}, {endurance}, chine,  equipe2);")
-    print(f"volleyH.ajouterResultat(athlete{i}, new Score({random.randint(1,20)}, {place},  athlete{i}));")
+#for nom in epreuves :
+#    dict[nom] = 1
+#for i in range(34, 40):
+#    nom = random.choice(noms_cn)
+#    prenom = random.choice(prenoms_cn)
+#    force = random.randint(1, 20)
+#    endurance = random.randint(1, 20)
+#    agilite = random.randint(1, 20)
+#    epreuve = random.choice(epreuves)
+#    place = dict[epreuve]
+#    dict[epreuve] = place +1
+#    print(f"Athlete athlete{i} = new Athlete(''{nom}'', ''{prenom}'', 'H', {force}, {agilite}, {endurance}, chine,  equipe2);")
+#    print(f"volleyH.ajouterResultat(athlete{i}, new Score({random.randint(1,20)}, {place},  athlete{i}));")
+
+with open('donnees.csv', 'w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    # Écriture de l'en-tête
+    writer.writerow(["Nom", "Prénom", "Sexe", "Force", "Agilite", "Endurance", "Pays", "Equipe"])
+    # Écriture des enregistrements
+    writer.writerows(records)
+
+print("Fichier CSV généré avec succès.")

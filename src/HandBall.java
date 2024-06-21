@@ -1,3 +1,4 @@
+package src;
 
 /**
  * La classe HandBall représente un sport en particulier.

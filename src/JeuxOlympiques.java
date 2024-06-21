@@ -1,11 +1,14 @@
+package src;
 
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class JeuxOlympiques {
@@ -13,11 +16,14 @@ public class JeuxOlympiques {
     private Set<Epreuve> lesEpreuves;
     private List<Athlete> lesAthletes;
     private List<Equipe> lesEquipes;
+    private int compteurAjoutAthleteCSV;
 
     public JeuxOlympiques() {
         this.lesEpreuves = new HashSet<>();
         this.lesAthletes = new ArrayList<>();
         this.lesEquipes = new ArrayList<>();
+
+        this.idconnexion = new HashMap<>();
     }
 
     public Set<Epreuve> getLesEpreuves() {
@@ -46,6 +52,7 @@ public class JeuxOlympiques {
     }
 
     public void ajouterAthleteCSV(String fileName) {
+        this.compteurAjoutAthleteCSV = 0;
         try {
             List<String> lignes = Files.readAllLines(Paths.get(fileName));
             for (String ligne : lignes) {
@@ -59,15 +66,18 @@ public class JeuxOlympiques {
                     int endurance = Integer.parseInt(details[5]);
                     Pays pays = new Pays(details[6]);
                     Equipe tmp = new Equipe(details[7]);
+                    this.compteurAjoutAthleteCSV+=1;
                     if (!(this.lesEquipes.contains(tmp))) {
                         Athlete athlete = new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, tmp);
                         ajouterAthlete(athlete);
+                        this.compteurAjoutAthleteCSV+=1;
                     }
                     else {
                         for (Equipe equip : this.lesEquipes) {
                             if (equip.equals(tmp)) {
                                 Athlete athlete = new Athlete(nom, prenom, sexe, force, agilite, endurance, pays, equip);
                                 ajouterAthlete(athlete);
+                                this.compteurAjoutAthleteCSV+=1;
                             }
                         }
                     }
@@ -75,8 +85,11 @@ public class JeuxOlympiques {
             }
 
         } catch (IOException e) {
+            System.out.println("Erreur lors de l'ajout via CSV");
         }
     }
+
+    public int getNbAthleteAjoutCSV() {return this.compteurAjoutAthleteCSV;}
 
     public Set<Pays> getLesPays() {
         Set<Pays> listePays = new HashSet<>();
@@ -101,5 +114,25 @@ public class JeuxOlympiques {
 
     public void retirerEquipe(Equipe equipe) {
         this.lesEquipes.remove(equipe);
+    }
+
+
+
+    // Rajout SAE 2.07
+
+    private Map<String, String> idconnexion;
+
+    public void ajouterConnexion(String id, String mdp) {
+        this.idconnexion.put(id, mdp);
+    }
+    
+    public String verificationMdp(String id, String mdp) {
+        if(this.idconnexion.containsKey(id)) {
+            if(this.idconnexion.get(id).equals(mdp)) {
+                return "Valide";
+            }
+            else { return "Mdp invalide"; }
+        }
+        return "id inconnu";
     }
 }

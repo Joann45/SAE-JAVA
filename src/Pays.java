@@ -1,3 +1,4 @@
+package src;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -83,8 +84,8 @@ public class Pays implements Comparable<Pays>{
 
     @Override
     public int compareTo(Pays p){
-        if (Integer.compare(this.nbOr, p.nbOr)!=0){return Integer.compare(this.nbOr, p.nbOr);}
-        if (Integer.compare(this.nbArgent, p.nbArgent)!=0){return Integer.compare(this.nbArgent, p.nbArgent);}
-        return Integer.compare(this.nbBronze, p.nbBronze);
+        if (Integer.compare(p.nbOr, this.nbOr)!=0){return Integer.compare(p.nbOr, this.nbOr);}
+        if (Integer.compare(p.nbArgent, this.nbArgent)!=0){return Integer.compare(p.nbArgent, this.nbArgent);}
+        return Integer.compare(p.nbBronze, this.nbBronze);
     }
 }

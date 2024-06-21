@@ -1,3 +1,4 @@
+package src;
 /**
  * La classe Athlete représente un pays.
  * Elle possède un attribut qui est le nom du pays.
@@ -35,6 +36,19 @@ public class Athlete implements Participant, Comparable<Athlete> {
         this.paysAthlete = paysA;
         this.equipe = equipe;
     }
+    public Athlete(String nomA, String prenomA, char sexeA, int force, int agilite, int endurance, Pays paysA, Equipe equipe, int nbOr, int nbArgent, int nbBronze) {
+        this.nomAthlete = nomA;
+        this.prenomAthlete = prenomA;
+        this.sexeAthlete = sexeA;
+        this.force = force;
+        this.agilite = agilite;
+        this.endurance = endurance;
+        this.paysAthlete = paysA;
+        this.equipe = equipe;
+        this.nbOr = nbOr;
+        this.nbArgent = nbArgent;
+        this.nbBronze = nbBronze;
+    }
     @Override
     public int getNbOr(){
         return this.nbOr;
@@ -57,6 +71,14 @@ public class Athlete implements Participant, Comparable<Athlete> {
         return this.nomAthlete + " " + this.prenomAthlete;
     }
 
+    public String getNom(){
+        return this.nomAthlete;
+    }
+
+    public String getPrenom(){
+        return this.prenomAthlete;
+    }
+
     @Override
     public double getScore(){
         return this.score;
@@ -65,6 +87,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
     @Override
     public void setScore(double score){
         this.score += score;
+        this.equipe.setScore(score);
     }
 
     @Override
@@ -186,13 +209,14 @@ public class Athlete implements Participant, Comparable<Athlete> {
         return Double.compare(this.score, unAthlete.score) * -1;
     }
 
-@Override
-public boolean equals(Object o){
-    if (o == null){return false;}
-    if (o==this){return true;}
-    if (!(o instanceof Athlete)){return false;}
-    Athlete a1 = (Athlete) o;
-    return this.prenomAthlete.equals(a1.prenomAthlete) && this.nomAthlete.equals(a1.prenomAthlete) && this.paysAthlete.equals(a1.paysAthlete);
-}
+    @Override
+    public boolean equals(Object o){
+        if (o == null){return false;}
+        if (o==this){return true;}
+        if (!(o instanceof Athlete)){return false;}
+        Athlete a1 = (Athlete) o;
+        return this.prenomAthlete.equals(a1.prenomAthlete) && this.nomAthlete.equals(a1.prenomAthlete) && this.paysAthlete.equals(a1.paysAthlete);
+    }
+    
     
 }

@@ -1,3 +1,4 @@
+package src;
 import java.util.Comparator;
 public class ComparatorMedaillesParticipant implements Comparator<Participant>{
     @Override

@@ -1,3 +1,4 @@
+package src;
 
 /**
  * La classe Natation représente un sport en particulier.

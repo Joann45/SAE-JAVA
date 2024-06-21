@@ -1,3 +1,4 @@
+package src;
 /**
  * La classe Athletisme représente un sport en particulier.
  * Elle étend la classe Sport et ajoute un attribut spécifique pour la distance.

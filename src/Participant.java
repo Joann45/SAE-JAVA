@@ -1,3 +1,4 @@
+package src;
 /**
  * L'interface Participant représente un participant dans un événement sportif.
  * Elle définit les méthodes nécessaires pour participer à un événement et obtenir le nom du participant.

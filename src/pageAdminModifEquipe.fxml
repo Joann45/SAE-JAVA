@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label text="Entrez les informations concernant l'équipe" BorderPane.alignment="TOP_LEFT">
+         <font>
+            <Font name="Comfortaa Regular" size="19.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" top="15.0" />
+         </padding>
+      </Label>
+   </top>
+   <bottom>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="BtnAjouter" mnemonicParsing="false" text="Ajouter" />
+            <Button fx:id="BtnModifier" mnemonicParsing="false" text="Modifier" />
+            <Button fx:id="BtnRetirer" mnemonicParsing="false" text="Retirer" />
+            <Button fx:id="BtnAnnuler" mnemonicParsing="false" text="Annuler" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" right="20.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <GridPane fx:id="gridPane" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="82.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="117.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="0.0" prefWidth="5.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="122.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="133.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" minWidth="10.0" prefWidth="73.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="97.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="117.0" minHeight="9.0" prefHeight="31.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="114.0" minHeight="4.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Numéro id" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Nom" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="TFnom" prefHeight="24.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Label text="Or" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label text="Argent" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Bronze" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -1,3 +1,4 @@
+package src;
 
 /**
  * La classe Escrime représente un sport en particulier.
@@ -14,6 +15,7 @@ public class Escrime extends Sport {
     public Escrime(String arme) {
         super("Escrime");
         this.arme = arme;
+        this.nbMembresEquipe = null;
     }
 
     /**

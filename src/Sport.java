@@ -1,7 +1,8 @@
+package src;
 public abstract class Sport {
     
     protected String nomSport;
-    protected int nbMembresEquipe;
+    protected Integer nbMembresEquipe;
 
     protected Sport(String nomS) {
         this.nomSport = nomS;
@@ -11,7 +12,7 @@ public abstract class Sport {
         return this.nomSport;
     }
 
-    public int getNbMembresEquipe() {
+    public Integer getNbMembresEquipe() {
         return this.nbMembresEquipe;
     }
 

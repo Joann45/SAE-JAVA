@@ -1,3 +1,4 @@
+package src;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -66,6 +67,10 @@ public class Equipe implements Participant, Comparable<Equipe>{
             return athlete.getPaysAthlete();
         }
         return null;
+    }
+
+    public Set<Athlete> getMembres(){
+        return this.lesMembres;
     }
 
     public void ajouteEpreuve(Epreuve epreuve){
